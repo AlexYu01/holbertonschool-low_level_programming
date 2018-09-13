@@ -26,8 +26,11 @@ int main(void)
 					putchar(32);
 					putchar(l);
 					putchar(m);
-					putchar(44);
-					putchar(32);
+					if (j != 57 || k != 56 || l != 57 || m != 57)
+					{
+						putchar(44);
+						putchar(32);
+					}
 					m++;
 				}
 			l++;
