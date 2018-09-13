@@ -4,8 +4,8 @@
 /* more headers goes there */
 
 /**
- * main - prints a random number and determines if it is positive, negative
- * or zero.
+ * main - Assigns a random number, then prints if the number is positive, 0,
+ * or negative.
  *
  * Return: 0 if no errors.
  */

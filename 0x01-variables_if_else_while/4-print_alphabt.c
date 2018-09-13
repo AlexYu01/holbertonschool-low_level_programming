@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 /**
- * main - print alphabets except for 'q' and 'e' in lower case followed by
- * newline
+ * main - Prints all alphabets in lower case first then upper case using
+ * ASCII code.
  *
  * Return: 0 if no errors
  */

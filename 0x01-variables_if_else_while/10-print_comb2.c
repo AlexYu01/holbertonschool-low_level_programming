@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 /**
- * main - prints all single digit numbers of base 10 starting from 0
- *
+ * main - Prints all numbers from 00 to 99 in ascending order with a comma and
+ * space in between them using ASCII code.
  *
  * Return: 0 if no errors
  */

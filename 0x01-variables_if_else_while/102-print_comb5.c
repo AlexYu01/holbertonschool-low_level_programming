@@ -1,8 +1,10 @@
 #include <stdio.h>
 
 /**
- * main - prints all single digit numbers of base 10 starting from 0
- *
+ * main - Prints all two two-digit numbers, the two numbers are separated by a
+ * space and pairs are separated by a comma and space. (Eg. 00 01, 00 02) Only
+ * one permutation between two numbers can be printed eg. 00 01 is printed
+ * then 01 00 cant be printed.
  *
  * Return: 0 if no errors
  */

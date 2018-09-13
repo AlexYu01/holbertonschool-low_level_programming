@@ -4,8 +4,8 @@
 /* more headers goes there */
 
 /**
- * main - print a random number, its last digit and whether or not the digit
- * is greater than 5, less than 6 but not 0, or 0
+ * main - Assigns a random number, takes the last digit in the number and then
+ * prints if it is greater than 5, 0, or less than 6 but not 0.
  *
  * Return: 0 if no errors
  */

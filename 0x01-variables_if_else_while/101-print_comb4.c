@@ -1,7 +1,8 @@
 #include <stdio.h>
 
 /**
- * main - prints all single digit numbers of base 10 starting from 0
+ * main - Prints all three digit combinations but only the lowest value of the
+ * permutations (012 is printed but not 120, 102, 021 etc.) in ascending order.
  *
  *
  * Return: 0 if no errors
