@@ -35,7 +35,7 @@ void times_table(void)
 				}
 			}
 			_putchar(digit2 + '0');
-			if ( horz != 9)
+			if (horz != 9)
 			{
 				_putchar(',');
 			}
