@@ -8,43 +8,35 @@
 
 int main(void)
 {
-	long double first, second, old_carry, new_carry, cutoff, sum, temp;
+	unsigned long int firstA, firstB, secondA, secondB, tempA, tempB, cutoff;
 	int i;
 
-	cutoff = 1000000000000000000;
-	old_carry = new_carry = 0;
-	first = 1;
-	second = 2;
-	printf("%.0Lf, %.0Lf, ", first, second);
+	cutoff = 1000000000;
+	firstA = 1 / cutoff;
+	firstB = 1 % cutoff;
+	secondA = 2 / cutoff;
+	secondB = 2 % cutoff;
+	printf("%lu, %lu, ", firstB, secondB);
 	for (i = 0; i < 98; i++)
 	{
-		sum = second + first;
-		if (sum > cutoff || new_carry > 0)
+		tempA = secondA;
+		tempB = secondB;
+		if ((firstB + secondB) > cutoff)
 		{
-			first = second;
-			if (old_carry != 0 || new_carry != 0)
-			{
-				temp = old_carry;
-				old_carry = new_carry;
-			}
-			if (sum > cutoff)
-			{
-				second = sum - cutoff;
-				new_carry = new_carry + 1;
-			}
-			else
-			{
-				second = sum;
-			}
-			new_carry = temp + new_carry;
-			printf("%.0Lf%.0Lf", new_carry, second);
+			secondA += firstA + 1;
+			secondB = (firstB + secondB) % cutoff;
 		}
 		else
 		{
-			first = second;
-			second = sum;
-			printf("%.0Lf", second);
+			secondA += firstA;
+			secondB += firstB;
 		}
+		if (secondA > 0)
+			printf("%lu%lu", secondA, secondB);
+		else
+			printf("%lu", secondB);
+		firstA = tempA;
+		firstB = tempB;
 		if (i < 97)
 			printf(", ");
 		else
