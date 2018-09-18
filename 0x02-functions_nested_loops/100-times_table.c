@@ -42,6 +42,7 @@ void print_times_table(int n)
 		}
 	}
 }
+
 /**
  * times_table_helper - Helper functions for print_times_table function.
  * Prints the needed number of spaces depending on the value of digit1
@@ -53,6 +54,7 @@ void print_times_table(int n)
  *
  * Return: void
  */
+
 void times_table_helper(int digit1, int digit2)
 {
 	_putchar(' ');
