@@ -22,15 +22,17 @@ void times_table(void)
 			digit1 = prod / 10;
 			digit2 = prod % 10;
 
-			if ((digit1 != 0) && (horz != 0))
+			if (horz != 0)
 			{
 				_putchar(' ');
-				_putchar(digit1 + '0');
-			}
-			else if (horz != 0)
-			{ 
-				_putchar(' ');
-				_putchar(' ');
+				if (digit1 != 0)
+				{
+					_putchar(digit1 + '0');
+				}
+				else
+				{
+					_putchar(' ');
+				}
 			}
 			_putchar(digit2 + '0');
 			if ( horz != 9)
