@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "holberton.h"
 
 /**
  * main - Prints Holberton followed by a new line.
@@ -13,7 +13,7 @@ int main(void)
 	word = "Holberton\n";
 	while (*word)
 	{
-		putchar(*word);
+		_putchar(*word);
 		word++;
 	}
 	return (0);
