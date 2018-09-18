@@ -24,8 +24,8 @@ void print_times_table(int n)
 			{
 				prod = vert * horz;
 				digit1 = prod / 100;
-				digit2 = (prod % 100) / 10;
-				digit3 = (prod % 100) % 10;
+				digit2 = (prod / 10) % 10;
+				digit3 = prod % 10;
 				if (horz != 0)
 				{
 					_putchar(' ');
