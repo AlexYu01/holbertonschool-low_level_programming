@@ -17,7 +17,7 @@ int main(void)
 	secondA = 2 / cutoff;
 	secondB = 2 % cutoff;
 	printf("%ld, %ld, ", firstB, secondB);
-	for (i = 0; i < 98; i++)
+	for (i = 0; i < 96; i++)
 	{
 		tempA = secondA;
 		tempB = secondB;
@@ -37,7 +37,7 @@ int main(void)
 			printf("%ld", secondB);
 		firstA = tempA;
 		firstB = tempB;
-		if (i < 97)
+		if (i < 95)
 			printf(", ");
 		else
 			printf("\n");
