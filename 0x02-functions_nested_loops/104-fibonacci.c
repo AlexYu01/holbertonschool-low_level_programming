@@ -11,7 +11,7 @@ int main(void)
 	unsigned long int firstA, firstB, secondA, secondB, tempA, tempB, cutoff;
 	int i;
 
-	cutoff = 1000000000;
+	cutoff = 10000000000;
 	firstA = 1 / cutoff;
 	firstB = 1 % cutoff;
 	secondA = 2 / cutoff;
