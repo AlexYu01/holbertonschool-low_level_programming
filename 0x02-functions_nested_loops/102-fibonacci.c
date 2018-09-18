@@ -12,19 +12,18 @@ int main(void)
 	long int first;
 	long int second;
 	long int new;
-	long int sum;
 
 	first = 1;
 	second = 2;
 	printf("%lu, %lu, ", first, second);
 
-	for (i = 2; i < 52; i++)
+	for (i = 2; i < 50; i++)
 	{
 		new = second;
 		second += first;
 		first = new;
 		printf("%lu", second);
-		if (i < 51)
+		if (i < 49)
 		{
 			printf(", ");
 		}
