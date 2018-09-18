@@ -2,8 +2,9 @@
 
 /**
  * main - Print the sum of all numbers divisible by 3 or 5 below 1024
- * (excluded)
+ * (excluded).
  *
+ * Return: 0 upon successs.
  */
 
 int main(void)
@@ -19,4 +20,5 @@ int main(void)
 		}
 	}
 	printf("%d\n", sum);
+	return (0);
 }
