@@ -11,7 +11,7 @@ int main(void)
 	int i;
 	long int first;
 	long int second;
-	int new;
+	long int new;
 	long int sum;
 
 	first = 1;
