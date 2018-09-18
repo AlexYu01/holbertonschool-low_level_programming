@@ -29,14 +29,10 @@ void print_times_table(int n)
 				digit2 = (prod % 100) / 10;
 				digit3 = (prod % 100) % 10;
 				if (horz != 0)
-				{
 					times_table_helper(digit1, digit2);
-				}
 				_putchar(digit3 + '0');
 				if (horz != n)
-				{
 					_putchar(',');
-				}
 			}
 			_putchar('\n');
 		}

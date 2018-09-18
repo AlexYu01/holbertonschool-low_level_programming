@@ -9,20 +9,23 @@
 int main(void)
 {
 	int i;
-	double first;
-	double second;
-	double new;
+	long double first;
+	long double second;
+	long double new;
 
 	first = 1;
 	second = 2;
-	printf("%.0f, %.0f, ", first, second);
-
+//	printf("%.0f, %.0f, ", first, second);
+	puts(first);
+	puts(", ");
+	puts(second);
+	put(", ");
 	for (i = 0; i < 98; i++)
 	{
 		new = second;
 		second += first;
 		first = new;
-		printf("%0.f", second);
+		puts(second);
 		if (i < 97)
 		{
 			printf(", ");

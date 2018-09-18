@@ -24,9 +24,7 @@ int main(void)
 		first = new;
 		printf("%lu", second);
 		if (i < 49)
-		{
 			printf(", ");
-		}
 	}
 	printf("\n");
 	return (0);

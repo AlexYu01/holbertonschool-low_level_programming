@@ -26,19 +26,13 @@ void times_table(void)
 			{
 				_putchar(' ');
 				if (digit1 != 0)
-				{
 					_putchar(digit1 + '0');
-				}
 				else
-				{
 					_putchar(' ');
-				}
 			}
 			_putchar(digit2 + '0');
 			if (horz != 9)
-			{
 				_putchar(',');
-			}
 		}
 		_putchar('\n');
 	}

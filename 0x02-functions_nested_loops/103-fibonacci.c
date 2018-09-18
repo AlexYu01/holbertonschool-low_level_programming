@@ -24,9 +24,7 @@ int main(void)
 		first = second;
 		second = new;
 		if (new < 4000000)
-		{
 			sum += new;
-		}
 	}
 	printf("%lu\n", sum);
 	return (0);
