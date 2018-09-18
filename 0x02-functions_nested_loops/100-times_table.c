@@ -33,11 +33,12 @@ void print_times_table(int n)
 						_putchar(digit1 + '0');
 					else
 						_putchar(' ');
-					if (digit2 != 0)
+					if (digit1 != 0)
+						_putchar(digit2 + '0');
+					else if (digit2 != 0)
 						_putchar(digit2 + '0');
 					else
 						_putchar(' ');
-					}
 				}
 				_putchar(digit3 + '0');
 				if (horz != n)
