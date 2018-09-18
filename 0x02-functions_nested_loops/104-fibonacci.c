@@ -8,15 +8,15 @@
 
 int main(void)
 {
-	unsigned long int firstA, firstB, secondA, secondB, tempA, tempB, cutoff;
+	long int firstA, firstB, secondA, secondB, tempA, tempB, cutoff;
 	int i;
 
-	cutoff = 10000000000;
+	cutoff = 1000000000;
 	firstA = 1 / cutoff;
 	firstB = 1 % cutoff;
 	secondA = 2 / cutoff;
 	secondB = 2 % cutoff;
-	printf("%lu, %lu, ", firstB, secondB);
+	printf("%ld, %ld, ", firstB, secondB);
 	for (i = 0; i < 98; i++)
 	{
 		tempA = secondA;
@@ -32,9 +32,9 @@ int main(void)
 			secondB += firstB;
 		}
 		if (secondA > 0)
-			printf("%lu%lu", secondA, secondB);
+			printf("%ld%09ld", secondA, secondB);
 		else
-			printf("%lu", secondB);
+			printf("%ld", secondB);
 		firstA = tempA;
 		firstB = tempB;
 		if (i < 97)
