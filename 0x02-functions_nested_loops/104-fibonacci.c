@@ -8,15 +8,8 @@
 
 int main(void)
 {
+	long double first, second, old_carry, new_carry, cutoff, sum, temp;
 	int i;
-	
-	long double first;
-	long double second;
-	long double old_carry;
-	long double new_carry;
-	long double cutoff;
-	long double sum;
-	long double temp;
 
 	cutoff = 1000000000000000000;
 	old_carry = new_carry = 0;
@@ -28,13 +21,9 @@ int main(void)
 		sum = second + first;
 		if (sum > cutoff || new_carry > 0)
 		{
-			if (old_carry == 0 && new_carry == 0)
+			first = second;
+			if (old_carry != 0 || new_carry != 0)
 			{
-				first = second;
-			}
-			else
-			{
-				first = second;
 				temp = old_carry;
 				old_carry = new_carry;
 			}
@@ -57,11 +46,10 @@ int main(void)
 			printf("%.0Lf", second);
 		}
 		if (i < 97)
-		{
 			printf(", ");
-		}
+		else
+			printf("\n");
 	}
-	printf("\n");
 	return (0);
 }
 
