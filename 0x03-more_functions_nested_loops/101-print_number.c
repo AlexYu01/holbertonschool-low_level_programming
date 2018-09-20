@@ -1,5 +1,7 @@
 #include "holberton.h"
 
+void print_number_recursive(unsigned int n);
+
 /**
  * print_number - Prints an integer.
  * @n: Integer to be printed.
@@ -8,31 +10,38 @@
  */
 
 void print_number(int n)
-{
-	int digit1;
-	int digit2;
-	int digit3;
-	int digit4;
+{	
+	unsigned int i;
 
-	if (n < 0)
+	if(n < 0)
 	{
-		n = -n;
 		_putchar('-');
+		i = -n;
 	}
-	digit1 = n / 1000;
-	digit2 = n / 100 % 10;
-	digit3 = n / 10 % 10;
-	digit4 = n % 10;
+	else
+	{
+		i = n;
+	}
+	print_number_recursive(i);
+}
+/**
+ * print_numbers - Recursive function to print integers.
+ *
+ * Return: void.
+ */
 
-	if (digit1 > 0)
-		_putchar(digit1 + '0');
-	if (digit1 > 0)
-		_putchar(digit2 + '0');
-	else if (digit2 > 0)
-		_putchar(digit2 + '0');
-	if (digit2 > 0)
-		_putchar(digit3 + '0');
-	else if (digit3 > 0)
-		_putchar(digit3 + '0');
-	_putchar(digit4 + '0');
+void print_number_recursive(unsigned int n)
+{
+	if (n % 10 != 0)
+	{
+		if (n / 10 != 0)
+			print_number_recursive(n / 10);
+		_putchar((n % 10) + '0');
+	}
+	else
+	{
+		if (n / 10 != 0)
+			print_number_recursive(n / 10);
+		_putchar((n % 10) + '0');
+	}
 }
