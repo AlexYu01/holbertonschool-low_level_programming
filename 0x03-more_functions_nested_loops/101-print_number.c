@@ -10,10 +10,10 @@ void print_number_recursive(unsigned int n);
  */
 
 void print_number(int n)
-{	
+{
 	unsigned int i;
 
-	if(n < 0)
+	if (n < 0)
 	{
 		_putchar('-');
 		i = -n;
@@ -25,7 +25,8 @@ void print_number(int n)
 	print_number_recursive(i);
 }
 /**
- * print_numbers - Recursive function to print integers.
+ * print_number_recursive - Recursive function to print integers.
+ * @n: unsigned integer.
  *
  * Return: void.
  */
