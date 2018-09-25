@@ -9,41 +9,25 @@
 
 int _atoi(char *s)
 {
-	int positives, negatives, length, i, num;
-	unsigned int position;
+	int sign;
+	unsigned int num;
 	char *temp;
 
 	temp = s;
-	length = 0;
-	positives = 0;
-	negatives = 0;
+	num = 0;
+	sign = 1;
 	while (*temp != '\0' && (*temp < '0' || *temp > '9'))
 	{
-		if (*temp == '+')
-			positives++;
-		else if (*temp == '-')
-			negatives++;
-		temp++;
+		if (*temp == '-')
+			sign *= -1;
 	}
-	num = 0;
 	if (*temp != '\0')
 	{
-		while (*temp >= '0' && *temp <= '9')
-		{
-			length++;
+		printf("fail");
+		do {
+			num = num * 10 + (*temp - '0');
 			temp++;
-		}
-		temp--;
-		position = 1;
-		for (i = 0; i < length; i++)
-		{
-			if (negatives > positives)
-				num -= (*temp - '0') * position;
-			else
-				num += (*temp - '0') * position;
-			position *= 10;
-			temp--;
-		}
+		} while (*temp >= '0' && *temp <= '9');
 	}
-	return (num);
+	return (num * sign);
 }
