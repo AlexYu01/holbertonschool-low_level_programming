@@ -23,7 +23,6 @@ int _atoi(char *s)
 	}
 	if (*temp != '\0')
 	{
-		printf("fail");
 		do {
 			num = num * 10 + (*temp - '0');
 			temp++;
