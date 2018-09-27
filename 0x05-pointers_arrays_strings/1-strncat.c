@@ -6,7 +6,7 @@
  * @dest: Pointer to destination string.
  * @src: Pointer to source string.
  * @n: n bytes to copy from src.
- * 
+ *
  * Return: Pointer to destination string.
  */
 

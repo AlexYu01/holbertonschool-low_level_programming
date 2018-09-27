@@ -17,7 +17,7 @@ char *rot13(char *s)
 
 	for (index = 0; s[index] != '\0'; index++)
 	{
-		for(rotIndex = 0; rotIndex < 53; rotIndex++)
+		for (rotIndex = 0; rotIndex < 53; rotIndex++)
 		{
 			if (s[index] == rotI[rotIndex])
 			{
