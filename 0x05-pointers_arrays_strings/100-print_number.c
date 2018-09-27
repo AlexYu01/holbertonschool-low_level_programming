@@ -28,7 +28,7 @@ void print_number(int n)
 /**
  * recursive_print - A recursive function that prints num starting with the
  * first digit.
- *
+ * @num: The passed unsigned integer.
  * Return: void.
  */
 
