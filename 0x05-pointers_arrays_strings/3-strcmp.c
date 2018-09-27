@@ -17,9 +17,9 @@ int _strcmp(char *s1, char *s2)
 	while (s1[index] != '\0')
 	{
 		if (s1[index] > s2[index])
-			return (15);
+			return (s1[index] - s2[index]);
 		else if (s1[index] < s2[index])
-			return (-15);
+			return (s1[index] - s2[index]);
 		index++;
 	}
 	if (s2[index] == '\0')
