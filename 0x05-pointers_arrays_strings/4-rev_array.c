@@ -1,5 +1,3 @@
-#include "holberton.h"
-
 /**
  * reverse_array - Reverse an array of integers.
  * @a: Pointer to an integer array.

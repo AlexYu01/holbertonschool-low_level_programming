@@ -1,5 +1,3 @@
-#include "holberton.h"
-
 /**
  * _strncpy - Copies a string.
  * @dest: Pointer to destination string.

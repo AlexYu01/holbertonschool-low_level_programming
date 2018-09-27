@@ -1,5 +1,3 @@
-#include "holberton.h"
-
 /**
  * leet - Encode a string into 1337.
  * @s: Pointer to a character string.

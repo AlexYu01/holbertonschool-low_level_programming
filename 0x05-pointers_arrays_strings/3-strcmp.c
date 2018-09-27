@@ -1,5 +1,3 @@
-#include "holberton.h"
-
 /**
  * _strcmp - Compare two strings.
  * @s1: Pointer to a string.

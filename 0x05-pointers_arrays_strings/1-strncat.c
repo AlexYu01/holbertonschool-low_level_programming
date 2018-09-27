@@ -1,5 +1,3 @@
-#include "holberton.h"
-
 /**
  * _strncat - Concantenates two strings where n number of bytes are copied from
  * source.

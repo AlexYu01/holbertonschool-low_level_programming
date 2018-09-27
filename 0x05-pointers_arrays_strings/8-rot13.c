@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 /**
  * rot13 - Encodes a string using rot13.
  * @s: Pointer to a character string,
