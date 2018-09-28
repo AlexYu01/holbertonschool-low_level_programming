@@ -29,7 +29,7 @@ void print_buffer(char *b, int size)
 			}
 			printf(" ");
 		}
-		for (; charc < i + 10; charc++)
+		for (; charc < i + 10 && charc < size; charc++)
 		{
 			if (b[charc] > 31)
 				printf("%c", b[charc]);
