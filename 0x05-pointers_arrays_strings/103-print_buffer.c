@@ -13,7 +13,7 @@ void print_buffer(char *b, int size)
 	int charc = 0;
 	int i, k, l;
 
-	if (size == 0)
+	if (size <= 0)
 		printf("\n");
 	for (i = 0; i < size; i += 10)
 	{
