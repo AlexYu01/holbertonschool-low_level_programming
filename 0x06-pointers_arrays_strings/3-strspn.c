@@ -1,5 +1,3 @@
-#include "holberton.h"
-
 /**
  * _strspn - Gets the length of a prefix substring.
  * @s: Pointer to the string to search.
@@ -13,22 +11,16 @@ unsigned int _strspn(char *s, char *accept)
 {
 	int index;
 	int j;
-	int max;
 
-	max = 0;
-
-	for (index = 0; accept[index] != '\0'; index++)
+	for (index = 0; s[index]; index++)
 	{
-		for (j = 0; s[j] != '\0'; j++)
+		for (j = 0; accept[j]; j++)
 		{
-			if (accept[index] == s[j])
-			{
-				if (j + 1 > max)
-					max = j + 1;
+			if (s[index] == accept[j])
 				break;
-			}
 		}
+		if (!accept[j])
+			break;
 	}
-
-	return (max);
+	return ((unsigned int) index);
 }
