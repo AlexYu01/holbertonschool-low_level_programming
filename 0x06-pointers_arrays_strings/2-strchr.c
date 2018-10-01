@@ -15,6 +15,7 @@ char *_strchr(char *s, char c)
 	int length;
 
 	index = 0;
+	found = (void *) 0;
 
 	while (s[index++])
 		length++;
