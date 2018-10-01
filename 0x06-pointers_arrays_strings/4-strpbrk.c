@@ -1,5 +1,7 @@
 #include "holberton.h"
 
+#define NULL 0
+
 /**
  * _strpbrk - Searches a string for any of a set of bytes.
  * @s: Pointer to a string that will be searched.
@@ -10,19 +12,19 @@
 
 char *_strpbrk(char *s, char *accept)
 {
-	int found;
+	char *target;
 	int index;
 	int j;
 
-	found = 0;
+	target = NULL;
 
-	for (index = 0; s[index] != '\0' && found == 0; index++)
+	for (index = 0; s[index] != '\0' && !target; index++)
 	{
-		for (j = 0; accept[j] != '\0' && found == 0; j++)
+		for (j = 0; accept[j] != '\0' && !target; j++)
 		{
 			if (s[index] == accept[j])
-				found = 1;
+				target = &s[index];
 		}
 	}
-	return (&s[index - 1]);
+	return (target);
 }
