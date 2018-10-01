@@ -14,23 +14,24 @@
 char *_strstr(char *haystack, char *needle)
 {
 	char *found;
-	int flag;
 	int j;
 	int index;
+	int length;
 
-	flag = 0;
 	found = NULL;
 
-	for (index = 0; haystack[index] != '\0' && flag == 0; index++)
+	while (haystack[index++])
+		length++;
+
+	for (index = 0; index < length && !found; index++)
 	{
 		if (haystack[index] == *needle)
 			found = &haystack[index];
 			for (j = 0; needle[j] != '\0' && found; j++)
 			{
-				if (haystack[index + j] != needle[j])
+				if (index + j > length || haystack[index + j] != needle[j])
 					found = NULL;
-				if (needle[j + 1]  == '\0' && found)
-					flag = 1;
+
 			}
 	}
 
