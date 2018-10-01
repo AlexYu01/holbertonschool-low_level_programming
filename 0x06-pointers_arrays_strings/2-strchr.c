@@ -1,5 +1,7 @@
 #include "holberton.h"
 
+#define NULL 0
+
 /**
  * _strchr - Locates a character in a string.
  * @s: Pointer to the string.
@@ -15,7 +17,7 @@ char *_strchr(char *s, char c)
 	int length;
 
 	index = 0;
-	found = (void *) 0;
+	found = NULL;
 
 	while (s[index++])
 		length++;
