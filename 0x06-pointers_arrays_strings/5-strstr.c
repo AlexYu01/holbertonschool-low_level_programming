@@ -1,6 +1,6 @@
 #include "holberton.h"
-#include <stdio.h>
 
+#define NULL 0
 
 /**
  * _strstr - locates a substring.
@@ -27,6 +27,7 @@ char *_strstr(char *haystack, char *needle)
 	for (index = 0; index < length && !found; index++)
 	{
 		if (haystack[index] == *needle)
+		{
 			found = &haystack[index];
 			for (j = 0; needle[j] != '\0' && found; j++)
 			{
@@ -40,6 +41,7 @@ char *_strstr(char *haystack, char *needle)
 					found = NULL;
 				}
 			}
+		}
 	}
 
 	return (found);
