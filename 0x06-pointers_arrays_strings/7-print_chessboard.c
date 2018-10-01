@@ -1,7 +1,7 @@
 #include "holberton.h"
 
 /**
- * Prints the chessboard.
+ * print_chessboard - Prints the chessboard.
  * @a: Pointer to two dimsional array.
  *
  * Return: void.
