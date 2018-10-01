@@ -19,6 +19,7 @@ char *_strstr(char *haystack, char *needle)
 	int length;
 
 	found = NULL;
+	index = 0;
 
 	while (haystack[index++])
 		length++;
