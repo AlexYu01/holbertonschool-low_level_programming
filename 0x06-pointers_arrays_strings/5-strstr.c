@@ -16,25 +16,18 @@ char *_strstr(char *haystack, char *needle)
 	int index;
 
 	found = NULL;
-	index = 0;
 
 	for (index = 0; haystack[index] != '\0' && !found; index++)
 	{
 		if (haystack[index] == *needle)
 		{
 			found = &haystack[index];
-			for (j = 0; needle[j] != '\0' && found; j++)
-			{
-				if (haystack[index + j] != '\0')
-				{
-					if (haystack[index + j] != needle[j])
-						found = NULL;
-				}
-				else
-				{
-					found = NULL;
-				}
-			}
+			j = 0;
+			while (haystack[index + j] != '\0' && haystack[index + j] == needle[j])
+				j++;
+
+			if (needle[j] != '\0')
+				found = NULL;
 		}
 	}
 
