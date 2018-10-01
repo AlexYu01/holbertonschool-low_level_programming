@@ -1,8 +1,7 @@
 #include "holberton.h"
-#include <stdio.h>
 
 /**
- * Sets values of a pointer to a char.
+ * set_string - Sets values of a pointer to a char.
  * @s: A pointer to a pointer of a string.
  * @to: Pointer to a string that will be changed.
  *
