@@ -1,5 +1,3 @@
-#include "holberton.h"
-
 /**
  * _memset - Fills memory with a onstant byte.
  * @s: Pointer to memeory area to be filled.

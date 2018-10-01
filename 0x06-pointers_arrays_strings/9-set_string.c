@@ -1,5 +1,3 @@
-#include "holberton.h"
-
 /**
  * set_string - Sets values of a pointer to a char.
  * @s: A pointer to a pointer of a string.
