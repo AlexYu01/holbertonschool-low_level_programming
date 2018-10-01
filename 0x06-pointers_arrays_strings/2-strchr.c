@@ -26,7 +26,7 @@ char *_strchr(char *s, char c)
 		}
 	}
 
-	if (s[index] == '\0' && c == '\0')
+	if (c == '\0' && s[index] == '\0')
 		found = &s[index];
 
 	return (found);
