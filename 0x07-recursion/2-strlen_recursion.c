@@ -1,5 +1,5 @@
 /**
-  * _str_len_recursion - Returns the length of a string.
+  * _strlen_recursion - Returns the length of a string.
   * @s: Pointer to the string.
   *
   * Return: void.
