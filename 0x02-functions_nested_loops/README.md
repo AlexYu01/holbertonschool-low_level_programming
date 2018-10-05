@@ -192,4 +192,6 @@ julien@ubuntu:~/0x02$ ./100-times_table
 
 *Output not included*
 
+- 16 - Write a program that finds and prints the first 98 Fibonacci numbers, starting with 1 and 2, followed by a new line. Usage of `long long`, `malloc`, pointers, array/tables, structures and any library besides standard library is forbidden.
 
+*Output not included*
