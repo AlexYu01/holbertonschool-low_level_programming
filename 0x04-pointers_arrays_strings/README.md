@@ -2,7 +2,7 @@
 
 Compiled with `gcc 4.8.4`, with `-Wall -Werror -Wextra -pedantic` flags.
 
-**Focus**: The project teaches about pointers, arrays, and the manipulation of strings. Usage of the standard library is forbiddne in some tasks.
+**Focus**: The project teaches about pointers, arrays, and the manipulation of strings. Usage of the standard library is forbidden in some tasks.
 
 **Tasks and their expected outputs**:
 - 0 - Write a function that takes a pointer to an int as parameter and updates the value it points to to 98.
