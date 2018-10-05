@@ -2,7 +2,7 @@
 
 Compiled with `gcc 4.8.4`, with `-Wall -Werror -Wextra -pedantic` flags.
 
-**Focus**: The project provides more practice on nested loops, and functions. Usage of the standard library is forbiddne in some tasks.
+**Focus**: The project provides more practice on nested loops, and functions. Usage of the standard library is forbidden in some tasks.
 
 **Tasks and their expected outputs**:
 - 0 - Write a function that checks for uppercase character. Return 1 if c is uppercase, otherwise return 0.
