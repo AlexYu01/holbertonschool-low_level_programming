@@ -58,7 +58,7 @@ int _atoi(char *s)
 			num = num * 10 + (*temp - '0');
 		else
 			return (-1);
-	
+
 		temp++;
 	}
 
