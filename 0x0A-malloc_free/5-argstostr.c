@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 unsigned int _strlen(char *s);
 
@@ -17,7 +18,7 @@ unsigned int _strlen(char *s)
 
 	while (s[length])
 		length++;
-
+	printf("%d\n", length);
 	return (length);
 }
 /**
@@ -44,7 +45,7 @@ char *argstostr(int ac, char **av)
 	for (i = 0; i < ac; i++)
 		len += _strlen(av[i]);
 
-	ptr = malloc(sizeof(**av) * (len + 1));
+	ptr = malloc(sizeof(**av) * (ac + len + 1));
 
 	if (ptr)
 	{
@@ -61,6 +62,10 @@ char *argstostr(int ac, char **av)
 		}
 
 		ptr[index] = '\0';
+	}
+	else
+	{
+		return (NULL);
 	}
 
 	return (ptr);
