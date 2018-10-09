@@ -32,8 +32,12 @@ char **allocation(char *str)
 	ptr = malloc(sizeof(*ptr) * (num + 1));
 	len = malloc(sizeof(int) * num);
 
-	if (ptr == NULL && len == NULL)
+	if (ptr == NULL || len == NULL)
+	{
+		free(ptr);
+		free(len);
 		return (NULL);
+	}
 
 	i = 0;
 	j = 0;
@@ -42,7 +46,7 @@ char **allocation(char *str)
 		if (str[i] != ' ')
 		{
 			len[j] += 1;
-			if (str[i + 1] != ' ')
+			if (str[i + 1] == ' ')
 				j++;
 		}
 		i++;
