@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <stdio.h>
 
 unsigned int _strlen(char *s);
 
@@ -18,7 +17,6 @@ unsigned int _strlen(char *s)
 
 	while (s[length])
 		length++;
-	printf("%d\n", length);
 	return (length);
 }
 /**
