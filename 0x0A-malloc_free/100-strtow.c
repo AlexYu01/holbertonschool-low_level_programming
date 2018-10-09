@@ -15,10 +15,11 @@ char **allocation(char *str);
 char **allocation(char *str)
 {
 	char **ptr;
-	int *len;
+	int len;
 	unsigned int num;
 	unsigned int i;
 	unsigned int j;
+	unsigned int k;
 
 	num = 0;
 
@@ -33,42 +34,37 @@ char **allocation(char *str)
 		return (NULL);
 
 	ptr = malloc(sizeof(*ptr) * (num + 1));
-	len = malloc(sizeof(int) * num);
 
-	if (ptr == NULL || len == NULL)
+	if (ptr == NULL)
 	{
 		free(ptr);
-		free(len);
 		return (NULL);
 	}
 
 	i = 0;
 	j = 0;
+	len = 0;
 	while (str[i])
 	{
 		if (str[i] != ' ')
 		{
-			len[j] += 1;
-			if (str[i + 1] == ' ')
+			len += 1;
+			if (str[i + 1] == ' ' || str[i + 1] == '\0')
+			{
+				ptr[j] = malloc(sizeof(**ptr) * (len + 1));
+				if (ptr[j] == NULL)
+				{
+					for (k = 0; k < j; k++)
+						free(ptr[k]);
+					free(ptr);
+					return (NULL);
+				}
 				j++;
+				len = 0;
+			}
 		}
 		i++;
 	}
-
-	for (j = 0; j < num; j++)
-	{
-		ptr[j] = malloc(sizeof(**ptr) * (len[j] + 1));
-		if (ptr[j] == NULL)
-		{
-			for (i = 0; i < j; i++)
-				free(ptr[i]);
-			free(ptr);
-			free(len);
-			return (NULL);
-		}
-	}
-
-	free(len);
 
 	return (ptr);
 }
