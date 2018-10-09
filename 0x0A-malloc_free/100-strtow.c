@@ -32,6 +32,9 @@ char **allocation(char *str)
 	ptr = malloc(sizeof(*ptr) * (num + 1));
 	len = malloc(sizeof(int) * num);
 
+	if (ptr == NULL && len == NULL)
+		return (NULL);
+
 	i = 0;
 	j = 0;
 	while (str[i])
@@ -46,7 +49,17 @@ char **allocation(char *str)
 	}
 
 	for (j = 0; j < num; j++)
+	{
 		ptr[j] = malloc(sizeof(**ptr) * (len[j] + 1));
+		if (ptr[j] == NULL)
+		{
+			for (i = 0; i < j; i++)
+				free(ptr[i]);
+			free(ptr);
+			free(len);
+			return (NULL);
+		}
+	}
 
 	free(len);
 
@@ -70,6 +83,9 @@ char **strtow(char *str)
 		return (NULL);
 
 	ptr = allocation(str);
+
+	if (ptr == NULL)
+		return (NULL);
 
 	i = 0;
 	j = 0;
