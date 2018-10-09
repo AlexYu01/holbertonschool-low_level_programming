@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 char **allocation(char *str);
 
@@ -28,6 +29,8 @@ char **allocation(char *str)
 			num++;
 		i++;
 	}
+	if (num == 0)
+		return (NULL);
 
 	ptr = malloc(sizeof(*ptr) * (num + 1));
 	len = malloc(sizeof(int) * num);
