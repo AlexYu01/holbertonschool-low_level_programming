@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 unsigned int _strlen(char *s);
 
@@ -15,8 +16,12 @@ unsigned int _strlen(char *s)
 
 	length = 0;
 
+	if (s == NULL)
+		return (0);
+
 	while (s[length])
 		length++;
+
 	return (length);
 }
 
@@ -37,11 +42,6 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	unsigned int len2;
 	unsigned int mem;
 	unsigned int i;
-
-	if (s1 == NULL)
-		s1 = "";
-	if (s2 == NULL)
-		s2 = "";
 
 	len1 = _strlen(s1);
 	len2 = _strlen(s2);
