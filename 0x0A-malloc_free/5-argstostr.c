@@ -4,7 +4,7 @@ unsigned int _strlen(char *s);
 
 /**
  * _strlen - Returns the length of a string.
- * @s: A pointer to the characters string.
+ * @s: A pointer to the character string.
  *
  * Return: The length of the character string.
  */
