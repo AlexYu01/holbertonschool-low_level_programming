@@ -60,7 +60,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	{
 		if (i < len1)
 			ptr[i] = s1[i];
-		else if (len1 > 0 && i > len1)
+		else if (len1 > 0 && i >= len1)
 			ptr[i] = s2[i - len2];
 		else
 			ptr[i] = s2[i];
