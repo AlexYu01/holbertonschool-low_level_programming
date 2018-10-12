@@ -10,6 +10,10 @@ void rev_string(char *s);
 
 void print_string(char *s);
 
+void _mul(char *temp, char *num1, unsigned int len1, char digit2);
+
+void _add(char *total, char *temp, unsigned int current);
+
 /**
  * num_len - Returns the length of a string containing numbers. If there's a
  * non digit, prints Error and exits with status 98.
@@ -49,8 +53,8 @@ unsigned int num_len(char *s)
 void *_calloc0(unsigned int nmemb, unsigned int size)
 {
 	char *ptr;
-	int i;
-	int bytes;
+	unsigned int i;
+	unsigned int bytes;
 
 	bytes = nmemb * size;
 
@@ -78,9 +82,9 @@ void *_calloc0(unsigned int nmemb, unsigned int size)
 void rev_string(char *s)
 {
 	char c;
-	int back;
-	int front;
-	int length;
+	unsigned int back;
+	unsigned int front;
+	unsigned int length;
 
 	length = 0;
 	while (s[length] != '\0')
@@ -127,6 +131,71 @@ void print_string(char *s)
 }
 
 /**
+  * _mul - Store product of num1 and the current digit from num2 in temp in
+  * reverse.
+  * @temp: Pointer a char array that will store the product of num1 and a digit
+  * from num2, in reverse.
+  * @num1: Pointer to string storing first number. (Not in reverse).
+  * @len1: Length of num1.
+  * @digit2: Current digit from second number.
+  *
+  * Return: void.
+  */
+
+void _mul(char *temp, char *num1, unsigned int len1, char digit2)
+{
+	int j;
+	unsigned int k;
+	unsigned int prod;
+	unsigned int leftover;
+
+	k = 0;
+	leftover = 0;
+
+	for (j = len1 - 1; j >= 0; j--)
+	{
+		prod = (num1[j] - '0') * (digit2 - '0') + leftover;
+		leftover = prod / 10;
+		temp[k] = (prod % 10) + '0';
+		k++;
+	}
+	temp[k++] = leftover + '0';
+	temp[k] = '\0';
+}
+
+/**
+  * _add - Basically total += temp. Iterate through temp and add to the number
+  * stored in total that is also stored in reverse. 'current' represents n
+  * digits to skip over 'total' as they will not change. E.g When doing
+  * 12 x 13 = 156, the last digit, 6 does not change during the addition proces
+  * of multiplication of two numbers. 'current' starts out at 0, but everytime
+  * _add is called, one more digit gets skipped over than last time.
+  * @total: Pointer to string containing current total, in reverse.
+  * @temp: Pointer to the most recent product of num1 and a digit from num2,
+  * in reverse.
+  * @current: How many digits to skip over.
+  *
+  * Return: void.
+  */
+
+void _add(char *total, char *temp, unsigned int current)
+{
+	unsigned int k;
+	unsigned int sum;
+	unsigned int leftover;
+
+	k = 0;
+	leftover = 0;
+	while (temp[k])
+	{
+		sum = (temp[k] - '0') + (total[current] - '0') + leftover;
+		leftover = sum / 10;
+		total[current] = (sum % 10) + '0';
+		current++;
+		k++;
+	}
+}
+/**
   * main - Multiplies two positive numbers and prints to terminal.
   * @argc: The number of arguments passed.
   * @argv: A pointer to an array of pointers that point to the arguments.
@@ -136,20 +205,14 @@ void print_string(char *s)
 
 int main(int argc, char **argv)
 {
-	int len1;
-	int len2;
-	int i;
-	int j;
-	int k;
-	int start;
-	int current;
-	int prod;
-	int sum;
-	int leftover;
 	char *total;
 	char *temp;
 	char *num1;
 	char *num2;
+	int i;
+	unsigned int len1;
+	unsigned int len2;
+	unsigned int start;
 
 	if (argc != 3)
 	{
@@ -175,8 +238,6 @@ int main(int argc, char **argv)
 	/* iterate through each digit in num2 starting with last*/
 	for (i = len2 - 1; i >= 0; i--)
 	{
-		k = 0;
-		leftover = 0;
 
 		temp = _calloc0(sizeof(*temp) * (len1 + 1 + 1), 1);
 		if (!temp)
@@ -185,45 +246,22 @@ int main(int argc, char **argv)
 			free(total);
 			exit(98);
 		}
-		/* Store product of num1 and the current digit from num2 in */
-		/* temp in reverse */
-		for (j = len1 - 1; j >= 0; j--)
-		{
-			prod = (num1[j] - '0') * (num2[i] - '0') + leftover;
-			leftover = prod / 10;
-			temp[k] = (prod % 10) + '0';
-			k++;
-		}
-		temp[k++] = leftover + '0';
-		temp[k] = '\0';
 
-		k = 0;
-		leftover = 0;
-		/* start is the first n digits that will not change in */
-		/* total (storing number in reverse so actually last */
-		/* n digits). Start begins with 0. After every time */
-		/* total += temp, start increments by 1. */
-		/* In 11 * 10 = 110, the last 0 doesnt change when */
-		/* performing addition to get the product. */
-		current = start;
-		/* iterate through temp and add to the number stored in */
-		/* total that is also stored in reverse. total += temp */
-		while (temp[k])
-		{
-			sum = (temp[k] - '0') + (total[current] - '0') + leftover;
-			leftover = sum / 10;
-			total[current] = (sum % 10) + '0';
-			current++;
-			k++;
-		}
+		_mul(temp, num1, len1, num2[i]);
+
+		_add(total, temp, start);
 
 		free(temp);
+
 		start++;
 	}
-	total[current] = '\0';
+	total[len1 + len2] = '\0';
 
 	rev_string(total);
+
 	print_string(total);
+
 	free(total);
+
 	return (0);
 }
