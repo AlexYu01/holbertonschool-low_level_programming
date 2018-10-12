@@ -6,13 +6,11 @@ unsigned int num_len(char *s);
 
 void *_calloc0(unsigned int nmemb, unsigned int size);
 
-void rev_string(char *s);
-
 void print_string(char *s);
 
 void _mul(char *temp, char *num1, unsigned int len1, char digit2);
 
-void _add(char *total, char *temp, unsigned int current);
+void _add(char *total, char *temp, char *front);
 
 /**
  * num_len - Returns the length of a string containing numbers. If there's a
@@ -66,38 +64,14 @@ void *_calloc0(unsigned int nmemb, unsigned int size)
 	if (!ptr)
 		return (NULL);
 
-	for (i = 0; i < bytes; i++)
+	for (i = 0; i < bytes - 1; i++)
 		ptr[i] = '0';
+
+	ptr[i] = '\0';
 
 	return ((void *) ptr);
 }
 
-/**
- * rev_string - Reverses a string.
- * @s: Pointer to a character string.
- *
- * Return: void;
- */
-
-void rev_string(char *s)
-{
-	char c;
-	unsigned int back;
-	unsigned int front;
-	unsigned int length;
-
-	length = 0;
-	while (s[length] != '\0')
-		length++;
-	front = 0;
-	for (back = length - 1; back >= length / 2; back--)
-	{
-		c = s[front];
-		s[front] = s[back];
-		s[back] = c;
-		front++;
-	}
-}
 
 /**
   * print_string - Print a string of numbers. If the string of numbers contain
@@ -131,11 +105,10 @@ void print_string(char *s)
 }
 
 /**
-  * _mul - Store product of num1 and the current digit from num2 in temp in
-  * reverse.
-  * @temp: Pointer a char array that will store the product of num1 and a digit
-  * from num2, in reverse.
-  * @num1: Pointer to string storing first number. (Not in reverse).
+  * _mul - Store product of num1 and the current digit from num2..
+  * @temp: Pointer to second to last byte (right before the null byte).
+  * Decrement as the array gets filled.
+  * @num1: Pointer to string storing first number.
   * @len1: Length of num1.
   * @digit2: Current digit from second number.
   *
@@ -145,55 +118,54 @@ void print_string(char *s)
 void _mul(char *temp, char *num1, unsigned int len1, char digit2)
 {
 	int j;
-	unsigned int k;
 	unsigned int prod;
 	unsigned int leftover;
 
-	k = 0;
 	leftover = 0;
 
 	for (j = len1 - 1; j >= 0; j--)
 	{
 		prod = (num1[j] - '0') * (digit2 - '0') + leftover;
 		leftover = prod / 10;
-		temp[k] = (prod % 10) + '0';
-		k++;
+		*temp = (prod % 10) + '0';
+		temp--;
 	}
-	temp[k++] = leftover + '0';
-	temp[k] = '\0';
+	*temp = leftover + '0';
 }
 
 /**
   * _add - Basically total += temp. Iterate through temp and add to the number
-  * stored in total that is also stored in reverse. 'current' represents n
-  * digits to skip over 'total' as they will not change. E.g When doing
-  * 12 x 13 = 156, the last digit, 6 does not change during the addition proces
-  * of multiplication of two numbers. 'current' starts out at 0, but everytime
-  * _add is called, one more digit gets skipped over than last time.
-  * @total: Pointer to string containing current total, in reverse.
-  * @temp: Pointer to the most recent product of num1 and a digit from num2,
-  * in reverse.
-  * @current: How many digits to skip over.
+  * stored in total. 'total' points to the last digit of the sum so far during
+  * the first call to _add. Every subsequent call, total starts one digit
+  * (byte) closer to the front than the previous call to _add.
+  * E.g When doing 12 x 13 = 156, the last digit, 6 does not
+  * change during the addition proces of multiplication.
+  * @total: Pointer to
+  * (address of 2nd to last element of the array - bytes to skip) address of
+  * the array containing the total so far.Decrement for every loop.
+  * @temp: Pointer to the 2nd to last bye of the array containing the
+  * most recent product of num1 and a digit from num2.
+  * Decrement for every loop.
+  * @front: Pointer to the 1st byte of the array containing the most recent
+  * product of num1 and a digit from num2. Used for loop ending condition.
   *
   * Return: void.
   */
 
-void _add(char *total, char *temp, unsigned int current)
+void _add(char *total, char *temp, char *front)
 {
-	unsigned int k;
 	unsigned int sum;
 	unsigned int leftover;
 
-	k = 0;
 	leftover = 0;
-	while (temp[k])
-	{
-		sum = (temp[k] - '0') + (total[current] - '0') + leftover;
+	do {
+		sum = (*temp - '0') + (*total - '0') + leftover;
 		leftover = sum / 10;
-		total[current] = (sum % 10) + '0';
-		current++;
-		k++;
-	}
+		*total = (sum % 10) + '0';
+		total--;
+		temp--;
+	} while (temp != front);
+	*total = ((*temp - '0') + leftover) + '0';
 }
 /**
   * main - Multiplies two positive numbers and prints to terminal.
@@ -234,7 +206,6 @@ int main(int argc, char **argv)
 	}
 
 	start = 0;
-	/* Calculations are stored in reverse */
 	/* iterate through each digit in num2 starting with last*/
 	for (i = len2 - 1; i >= 0; i--)
 	{
@@ -247,17 +218,18 @@ int main(int argc, char **argv)
 			exit(98);
 		}
 
-		_mul(temp, num1, len1, num2[i]);
+		/* pass 2nd to last byte address of temp */
+		_mul((temp + len1 + 1 - 1), num1, len1, num2[i]);
 
-		_add(total, temp, start);
+		/* pass the (2nd to last element - start) address of total */
+		/* pass the 2nd to last element of temp */
+		/* pass pointer to the front of the array for temp. */
+		_add((total + len2 + len1 - 1 - start), (temp + len1 + 1 - 1), temp);
 
 		free(temp);
 
 		start++;
 	}
-	total[len1 + len2] = '\0';
-
-	rev_string(total);
 
 	print_string(total);
 
