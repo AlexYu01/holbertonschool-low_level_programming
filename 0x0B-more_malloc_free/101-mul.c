@@ -146,7 +146,7 @@ int main(int argc, char **argv)
 	int prod;
 	int sum;
 	int leftover;
-	char *product;
+	char *total;
 	char *temp;
 	char *num1;
 	char *num2;
@@ -162,11 +162,11 @@ int main(int argc, char **argv)
 	num1 = argv[1];
 	num2 = argv[2];
 
-	product = _calloc0(sizeof(*product) * (len2 + len1 + 1), 1);
+	total = _calloc0(sizeof(*total) * (len2 + len1 + 1), 1);
 
-	if (!product)
+	if (!total)
 	{
-		printf("Allocation of product has failed\n");
+		printf("Allocation of total has failed\n");
 		exit(98);
 	}
 
@@ -182,7 +182,7 @@ int main(int argc, char **argv)
 		if (!temp)
 		{
 			printf("Allocation of temp has failed\n");
-			free(product);
+			free(total);
 			exit(98);
 		}
 		/* Store product of num1 and the current digit from num2 in */
@@ -200,31 +200,30 @@ int main(int argc, char **argv)
 		k = 0;
 		leftover = 0;
 		/* start is the first n digits that will not change in */
-		/* product (storing number in reverse so actually last */
+		/* total (storing number in reverse so actually last */
 		/* n digits). Start begins with 0. After every time */
-		/* product += temp, start increments by 1. */
+		/* total += temp, start increments by 1. */
 		/* In 11 * 10 = 110, the last 0 doesnt change when */
 		/* performing addition to get the product. */
 		current = start;
 		/* iterate through temp and add to the number stored in */
-		/* product that is also stored in reverse. product += temp */
+		/* total that is also stored in reverse. total += temp */
 		while (temp[k])
 		{
-			sum = (temp[k] - '0') + (product[current] - '0') + leftover;
+			sum = (temp[k] - '0') + (total[current] - '0') + leftover;
 			leftover = sum / 10;
-			product[current] = (sum % 10) + '0';
+			total[current] = (sum % 10) + '0';
 			current++;
 			k++;
 		}
-		product[current] = leftover + '0';
 
 		free(temp);
 		start++;
 	}
-	product[++current] = '\0';
+	total[current] = '\0';
 
-	rev_string(product);
-	print_string(product);
-
+	rev_string(total);
+	print_string(total);
+	free(total);
 	return (0);
 }
