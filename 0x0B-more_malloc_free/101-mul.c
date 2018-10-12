@@ -171,10 +171,13 @@ int main(int argc, char **argv)
 	}
 
 	start = 0;
+	/* Calculations are stored in reverse */
+	/* iterate through each digit in num2 starting with last*/
 	for (i = len2 - 1; i >= 0; i--)
 	{
-		leftover = 0;
 		k = 0;
+		leftover = 0;
+
 		temp = _calloc0(sizeof(*temp) * (len1 + 1 + 1), 1);
 		if (!temp)
 		{
@@ -182,6 +185,8 @@ int main(int argc, char **argv)
 			free(product);
 			exit(98);
 		}
+		/* Store product of num1 and the current digit from num2 in */
+		/* temp in reverse */
 		for (j = len1 - 1; j >= 0; j--)
 		{
 			prod = (num1[j] - '0') * (num2[i] - '0') + leftover;
@@ -189,13 +194,20 @@ int main(int argc, char **argv)
 			temp[k] = (prod % 10) + '0';
 			k++;
 		}
-		temp[k] = leftover + '0';
-		k++;
+		temp[k++] = leftover + '0';
 		temp[k] = '\0';
 
 		k = 0;
-		current = start;
 		leftover = 0;
+		/* start is the first n digits that will not change in */
+		/* product (storing number in reverse so actually last */
+		/* n digits). Start begins with 0. After every time */
+		/* product += temp, start increments by 1. */
+		/* In 11 * 10 = 110, the last 0 doesnt change when */
+		/* performing addition to get the product. */
+		current = start;
+		/* iterate through temp and add to the number stored in */
+		/* product that is also stored in reverse. product += temp */
 		while (temp[k])
 		{
 			sum = (temp[k] - '0') + (product[current] - '0') + leftover;
@@ -205,13 +217,14 @@ int main(int argc, char **argv)
 			k++;
 		}
 		product[current] = leftover + '0';
-		current++;
-		free(temp);
 
+		free(temp);
 		start++;
 	}
-	product[current] = '\0';
+	product[++current] = '\0';
+
 	rev_string(product);
 	print_string(product);
+
 	return (0);
 }
