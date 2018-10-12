@@ -46,26 +46,21 @@ char *argstostr(int ac, char **av)
 
 	ptr = malloc(sizeof(**av) * (ac + len + 1));
 
-	if (ptr)
-	{
-		for (i = 0; i < ac; i++)
-		{
-			j = 0;
-			while (av[i][j])
-			{
-				ptr[index++] = av[i][j];
-				j++;
-			}
-			if (!(av[i][j]))
-				ptr[index++] = '\n';
-		}
-
-		ptr[index] = '\0';
-	}
-	else
-	{
+	if (!ptr)
 		return (NULL);
+
+	for (i = 0; i < ac; i++)
+	{
+		j = 0;
+		while (av[i][j])
+		{
+			ptr[index++] = av[i][j];
+			j++;
+		}
+		ptr[index++] = '\n';
 	}
+
+	ptr[index] = '\0';
 
 	return (ptr);
 }
