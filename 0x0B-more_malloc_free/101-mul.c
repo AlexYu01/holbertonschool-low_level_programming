@@ -1,16 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "holberton.h"
 
 unsigned int num_len(char *s);
 
 void *_calloc0(unsigned int nmemb, unsigned int size);
 
-void print_string(char *s);
-
-void _mul(char *temp, char *num1, unsigned int len1, char digit2);
-
-void _add(char *total, char *temp, char *front);
+void _mul(char *total, char *num1, unsigned int len1, char digit2);
 
 /**
  * num_len - Returns the length of a string containing numbers. If there's a
@@ -64,109 +59,47 @@ void *_calloc0(unsigned int nmemb, unsigned int size)
 	if (!ptr)
 		return (NULL);
 
-	for (i = 0; i < bytes - 1; i++)
+	for (i = 0; i < bytes; i++)
 		ptr[i] = '0';
-
-	ptr[i] = '\0';
 
 	return ((void *) ptr);
 }
 
-
 /**
-  * print_string - Print a string of numbers. If the string of numbers contain
-  * only 0s then print one 0.
-  * @s: Pointer to the string.
+  * _mul - Iterate through the first number and multiply each digit with the
+  * digit from the second number, then add to total so far.
+  * @total: Pointer to the product of the first number and the second number.
+  * Points specifically to the last byte in memory that will be changed at the
+  * beginning of the function call. During the first function call the pointer
+  * points to the second to last byte in memory (last being the null byte).
+  * Each subsequent time the function is called, the pointer starts 1
+  * byte further to the left than the previous call. The pointer moves left
+  * with each loop during the function execution.
+  * @num1: Pointer to char string containing the first number.
+  * @len1: Length of the first number.
+  * @digit2: Current digit from the second number.
   *
   * Return: void.
   */
 
-void print_string(char *s)
-{
-	char *temp;
-
-	temp = s;
-	while (*temp == '0')
-		temp++;
-
-	if (*temp != '\0')
-	{
-		while (*temp)
-		{
-			_putchar(*temp);
-			temp++;
-		}
-	}
-	else
-	{
-		_putchar('0');
-	}
-	_putchar('\n');
-}
-
-/**
-  * _mul - Store product of num1 and the current digit from num2..
-  * @temp: Pointer to second to last byte (right before the null byte).
-  * Decrement as the array gets filled.
-  * @num1: Pointer to string storing first number.
-  * @len1: Length of num1.
-  * @digit2: Current digit from second number.
-  *
-  * Return: void.
-  */
-
-void _mul(char *temp, char *num1, unsigned int len1, char digit2)
+void _mul(char *total, char *num1, unsigned int len1, char digit2)
 {
 	int j;
-	unsigned int prod;
+	unsigned int sum;
 	unsigned int leftover;
 
 	leftover = 0;
 
 	for (j = len1 - 1; j >= 0; j--)
 	{
-		prod = (num1[j] - '0') * (digit2 - '0') + leftover;
-		leftover = prod / 10;
-		*temp = (prod % 10) + '0';
-		temp--;
-	}
-	*temp = leftover + '0';
-}
-
-/**
-  * _add - Basically total += temp. Iterate through temp and add to the number
-  * stored in total. 'total' points to the last digit of the sum so far during
-  * the first call to _add. Every subsequent call, total starts one digit
-  * (byte) closer to the front than the previous call to _add.
-  * E.g When doing 12 x 13 = 156, the last digit, 6 does not
-  * change during the addition proces of multiplication.
-  * @total: Pointer to
-  * (address of 2nd to last element of the array - bytes to skip) address of
-  * the array containing the total so far.Decrement for every loop.
-  * @temp: Pointer to the 2nd to last bye of the array containing the
-  * most recent product of num1 and a digit from num2.
-  * Decrement for every loop.
-  * @front: Pointer to the 1st byte of the array containing the most recent
-  * product of num1 and a digit from num2. Used for loop ending condition.
-  *
-  * Return: void.
-  */
-
-void _add(char *total, char *temp, char *front)
-{
-	unsigned int sum;
-	unsigned int leftover;
-
-	leftover = 0;
-	do {
-		sum = (*temp - '0') + (*total - '0') + leftover;
+		sum = (num1[j] - '0') * (digit2 - '0') + (*total - '0') + leftover;
 		leftover = sum / 10;
 		*total = (sum % 10) + '0';
 		total--;
-		temp--;
-	} while (temp != front);
-	*total = ((*temp - '0') + leftover) + '0';
+	}
+	*total = leftover + '0';
 }
+
 /**
   * main - Multiplies two positive numbers and prints to terminal.
   * @argc: The number of arguments passed.
@@ -178,13 +111,12 @@ void _add(char *total, char *temp, char *front)
 int main(int argc, char **argv)
 {
 	char *total;
-	char *temp;
 	char *num1;
 	char *num2;
 	int i;
 	unsigned int len1;
 	unsigned int len2;
-	unsigned int start;
+	unsigned int shift_left;
 
 	if (argc != 3)
 	{
@@ -197,7 +129,7 @@ int main(int argc, char **argv)
 	num1 = argv[1];
 	num2 = argv[2];
 
-	total = _calloc0(sizeof(*total) * (len2 + len1 + 1), 1);
+	total = _calloc0(len2 + len1 + 1, sizeof(*total));
 
 	if (!total)
 	{
@@ -205,33 +137,28 @@ int main(int argc, char **argv)
 		exit(98);
 	}
 
-	start = 0;
+	shift_left = 0;
 	/* iterate through each digit in num2 starting with last*/
 	for (i = len2 - 1; i >= 0; i--)
 	{
 
-		temp = _calloc0(sizeof(*temp) * (len1 + 1 + 1), 1);
-		if (!temp)
-		{
-			printf("Allocation of temp has failed\n");
-			free(total);
-			exit(98);
-		}
-
-		/* pass 2nd to last byte address of temp */
-		_mul((temp + len1 + 1 - 1), num1, len1, num2[i]);
+		/* pass last byte address of temp */
+		_mul((total + len2 + len1 - 1 - shift_left), num1, len1, num2[i]);
 
 		/* pass the (2nd to last element - start) address of total */
-		/* pass the 2nd to last element of temp */
+		/* pass last byte address of temp */
 		/* pass pointer to the front of the array for temp. */
-		_add((total + len2 + len1 - 1 - start), (temp + len1 + 1 - 1), temp);
-
-		free(temp);
-
-		start++;
+		/*_add((total + len2 + len1 - 1 - start), (temp + len1), temp);*/
+		shift_left++;
 	}
+	total[len2 + len1] = '\0';
 
-	print_string(total);
+	for (i = 0; total[i] == '0'; i++)
+		;
+	if (total[i] != '\0')
+		printf("%s\n", &total[i]);
+	else
+		printf("0\n");
 
 	free(total);
 
