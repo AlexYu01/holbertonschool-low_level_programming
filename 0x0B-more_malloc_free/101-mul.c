@@ -141,14 +141,9 @@ int main(int argc, char **argv)
 	/* iterate through each digit in num2 starting with last*/
 	for (i = len2 - 1; i >= 0; i--)
 	{
-
-		/* pass last byte address of temp */
+		/* pass address of the 2nd to last byte in memory minus number */
+		/* of bytes that wont change during calculation */
 		_mul((total + len2 + len1 - 1 - shift_left), num1, len1, num2[i]);
-
-		/* pass the (2nd to last element - start) address of total */
-		/* pass last byte address of temp */
-		/* pass pointer to the front of the array for temp. */
-		/*_add((total + len2 + len1 - 1 - start), (temp + len1), temp);*/
 		shift_left++;
 	}
 	total[len2 + len1] = '\0';
