@@ -64,6 +64,12 @@ julien@ubuntu:~/0x0b. more malloc, free$ ./e
 julien@ubuntu:~/0x0b. more malloc, free$ 
 ```
 - 5 - Write a program that multiplies two positive numbers. If the number of arguments is incorrect, print Error, followed by a new line, and exit with a status of 98. `num1` and `num2` should only be composed of digits. If not, print Error, followed by a new line, and exit with a status of 98.
+
+101-mul.c - Latest iteration: Requires less functions, allowing for faster runtimes while using less memory than previous iterations.
+
+101-mul_2.c - Second iteration: stored numbers as read by humans.
+
+101-mul_1.c - First iteration: stored numbers backwards during calculations; then reversed before printing to terminal.
 ```
 julien@ubuntu:~/0x0b. more malloc, free$ gcc -Wall -pedantic -Werror -Wextra 101-mul.c _putchar.c -o mul
 julien@ubuntu:~/0x0b. more malloc, free$ ./mul 10 98
