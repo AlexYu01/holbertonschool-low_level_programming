@@ -2,7 +2,7 @@
 
 Compiled with `gcc 4.8.4`, with `-Wall -Werror -Wextra -pedantic` flags.
 
-**Focus**: The project teaches about memory allocation on the heap through usage of the function `malloc`, along with the `free` function to deallocate memory.
+**Focus**: The project teaches what structures are, how to make one, and how to use one. Also teaches about the usages of typedef.
 
 **Tasks and their expected outputs**:
 - 0 - Define a new type struct dog with the following elements:
