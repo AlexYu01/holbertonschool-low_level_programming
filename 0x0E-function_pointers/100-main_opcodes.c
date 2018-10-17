@@ -34,9 +34,7 @@ int main(int argc, char **argv)
 
 	for (i = 0; i < num_bytes; i++)
 	{
-		hex = *(char *)(fp + i);
-		if (hex > 0xffffff00)
-			hex -= 0xffffff00;
+		hex = *(unsigned char *)(fp + i);
 		printf("%02x", hex);
 		if (i < num_bytes - 1)
 			printf(" ");
@@ -45,4 +43,3 @@ int main(int argc, char **argv)
 	printf("\n");
 	return (0);
 }
-
