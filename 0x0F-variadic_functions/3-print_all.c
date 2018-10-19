@@ -78,28 +78,26 @@ void print_all(const char * const format, ...)
 		{NULL, NULL}
 	};
 
-	if (format)
+	va_start(args, format);
+	separator = "";
+	i = 0;
+	while (format && format[i])
 	{
-		va_start(args, format);
-		separator = "";
-		i = 0;
-		while (format[i])
+		j = 0;
+		while (valid[j].fo)
 		{
-			j = 0;
-			while (j < 4)
+			if (format[i] == *(valid[j].fo))
 			{
-				if (format[i] == *(valid[j].fo))
-				{
-					printf("%s", separator);
-					valid[j].f(args);
-					separator = ", ";
-				}
-				j++;
+				printf("%s", separator);
+				valid[j].f(args);
+				separator = ", ";
 			}
-			i++;
+			j++;
 		}
-	va_end(args);
+		i++;
 	}
+	va_end(args);
+
 	printf("\n");
 }
 
