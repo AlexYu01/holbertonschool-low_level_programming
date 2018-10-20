@@ -1,4 +1,3 @@
-#include <stdarg.h>
 #include <stdio.h>
 #include "variadic_functions.h"
 
@@ -56,9 +55,8 @@ void _print_string(va_list args)
 
 	s = va_arg(args, char *);
 	if (s)
-		printf("%s", s);
-	else
-		printf("(nil)");
+		s = "(nil)";
+	printf("%s", s);
 }
 
 /**
@@ -105,4 +103,3 @@ void print_all(const char * const format, ...)
 
 	printf("\n");
 }
-
