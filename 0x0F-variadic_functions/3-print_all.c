@@ -1,6 +1,10 @@
-#include <stdarg.h>
 #include <stdio.h>
 #include "variadic_functions.h"
+
+void _print_char(va_list args);
+void _print_int(va_list args);
+void _print_float(va_list args);
+void _print_string(va_list args);
 
 /**
   * _print_char - Prints a character.
@@ -50,10 +54,9 @@ void _print_string(va_list args)
 	char *s;
 
 	s = va_arg(args, char *);
-	if (s)
-		printf("%s", s);
-	else
-		printf("(nil)");
+	if (!s)
+		s = "(nil)";
+	printf("%s", s);
 }
 
 /**
@@ -100,4 +103,3 @@ void print_all(const char * const format, ...)
 
 	printf("\n");
 }
-
