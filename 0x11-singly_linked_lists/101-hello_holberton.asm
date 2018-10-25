@@ -7,10 +7,10 @@ main:	mov esi, msg
 	mov eax, 0
 	call printf
 
-	mov ebx, 0
-	mov eax, 1
-	int 0x80
+	mov rax, 60
+	xor rdi, rdi
+	syscall
 
 	section	.data
-msg:	db	"Hello, Holberton", 10
+msg:	db	"Hello, Holberton", 10, 0
 fmt:	db	"%s", 0
