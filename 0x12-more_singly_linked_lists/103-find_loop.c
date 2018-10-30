@@ -16,10 +16,9 @@ listint_t *find_listint_loop(listint_t *head)
 
 	while (ptr)
 	{
-		if (ptr->next && ((void *) ptr > (void *) ptr->next))
-			ptr = ptr->next;
-		else
+		if (ptr->next && ((void *) ptr < (void *) ptr->next))
 			return (ptr->next);
+		ptr = ptr->next;
 	}
 	return (NULL);
 }
