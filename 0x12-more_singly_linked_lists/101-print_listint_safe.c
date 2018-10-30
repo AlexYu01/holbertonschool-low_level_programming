@@ -2,7 +2,11 @@
 #include <stdio.h>
 
 /**
- * print_listint_safe - Prints a lintint_t linked list.
+ * print_listint_safe - Prints a lintint_t linked list. Will not work if the
+ * stack does not grow downwards (architecture wise or reusing stack memory
+ * from above. However it is compliant with task 12's 'go through the list once
+ * ' requirement. It would not be possible to achieve the same output going
+ * through the list only once without using a visited record.
  * @head: const listint_t pointer to the beginning of the list.
  *
  * Return: the size of the list.
@@ -16,7 +20,7 @@ size_t print_listint_safe(const listint_t *head)
 	count = 0;
 	ptr = head;
 	if (!head)
-		return (count); /* not sure to exit 98 here. */
+		return (count);
 	while (ptr)
 	{
 		printf("[%p] %d\n", (void *) ptr, ptr->n);
