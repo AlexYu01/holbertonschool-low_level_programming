@@ -5,6 +5,7 @@
  * @head: Pointer to a pointer to the beginning of the list.
  * @idx: unsigned int value representing the index at which the new node should
  * be inserted.
+ * @n: The n value to store in the new node.
  *
  * Return: The address of the new node or NULL if it failed.
  */

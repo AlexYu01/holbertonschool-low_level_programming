@@ -3,7 +3,7 @@
 
 /**
  * print_listint - Prints the elements of a list.
- * h: A const listint_t pointer to the beginning of the list.
+ * @h: A const listint_t pointer to the beginning of the list.
  *
  * Return: size of the list.
  */
