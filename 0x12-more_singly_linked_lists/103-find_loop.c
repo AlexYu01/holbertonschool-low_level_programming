@@ -14,9 +14,6 @@ listint_t *find_listint_loop(listint_t *head)
 
 	ptr = head;
 
-	if (!head)
-		return (NULL);
-
 	while (ptr)
 	{
 		if (ptr->next && ((void *) ptr > (void *) ptr->next))

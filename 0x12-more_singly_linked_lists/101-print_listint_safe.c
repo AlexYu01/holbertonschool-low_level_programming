@@ -27,9 +27,6 @@ size_t print_listint_safe(const listint_t *head)
 			break;
 	}
 	if (ptr->next)
-	{
-		ptr = ptr->next;
-		printf("-> [%p] %d\n", (void *) ptr, ptr->n);
-	}
+		printf("-> [%p] %d\n", (void *) ptr->next, (ptr->next)->n);
 	return (count);
 }
