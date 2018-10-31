@@ -3,7 +3,7 @@
 
 /**
  * print_listint_safe - Prints a lintint_t linked list. Will not work if the
- * stack does not grow downwards (architecture wise or reusing stack memory
+ * heap does not grow downwards (architecture wise or reusing heap memory
  * from above. However it is compliant with task 12's 'go through the list once
  * ' requirement. It would not be possible to achieve the same output going
  * through the list only once without using a visited record.

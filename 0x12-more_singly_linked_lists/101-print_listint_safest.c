@@ -3,7 +3,7 @@
 
 /**
  * print_listint_safe - Prints a lintint_t linked list. The safest version
- * that works no matter how the stack grows, however it is not compliant with
+ * that works no matter how the heap grows, however it is not compliant with
  * task 12's 'go through the list only once' requirement, hence why it is not
  * submitted under the official file name for the task.
  * @head: const listint_t pointer to the beginning of the list.

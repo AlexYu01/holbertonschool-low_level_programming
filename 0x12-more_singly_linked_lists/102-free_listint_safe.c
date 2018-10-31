@@ -3,7 +3,7 @@
 /**
  * free_listint_safe - Frees a list_t list. Not the safest version, however it
  * is compliant with the task's requirement of 'go through the list only once'.
- * The function will not work properly if the stack does not grow downwards (
+ * The function will not work properly if the heap does not grow downwards (
  * architecture wise or reusing memory from above). It would not be possible to
  * achieve the same result by going through the list only once without usage of
  * a visited record.
