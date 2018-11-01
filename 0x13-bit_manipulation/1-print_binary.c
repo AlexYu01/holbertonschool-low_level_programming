@@ -17,7 +17,7 @@ void print_binary(unsigned long int n)
 	max_bits = sizeof(n) * 8;
 
 	bit = 1;
-	shifted = 0;
+	shifted = 1;
 
 	if (n == 0)
 	{
@@ -30,10 +30,8 @@ void print_binary(unsigned long int n)
 		bit = bit << 1;
 		shifted++;
 	}
-
 	if (shifted < max_bits)
 		bit = bit >> 1;
-
 	while (bit)
 	{
 		if ((n & bit) > 0)
