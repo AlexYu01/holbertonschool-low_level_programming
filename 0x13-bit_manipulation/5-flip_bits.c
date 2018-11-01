@@ -12,15 +12,15 @@
 
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
+	unsigned long int bit;
+	unsigned long int exclusive;
 	unsigned int count;
-	unsigned int bit;
 	unsigned int index;
 	unsigned int max_bits;
-	unsigned int exclusive;
 
 	bit = 1;
 	count = 0;
-	max_bits = sizeof(n) * 8;
+	max_bits = sizeof(unsigned long int) * 8;
 	exclusive = n ^ m;
 
 	for (index = 0; index < max_bits; index++)
