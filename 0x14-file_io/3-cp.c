@@ -2,7 +2,25 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>
+int close_file(int file_desc);
 
+/**
+ * close_file - Closes a file, and checks if the close was successful.
+ *
+ * @file_desc: File descriptor value.
+ *
+ * Return: 1 if successful, -1 if close failed.
+ */
+
+int close_file(int file_desc)
+{
+	if (close(file_desc) == -1)
+	{
+		dprintf(2, "Error: Can't close fd %d\n", file_desc);
+		return (-1);
+	}
+	return (1);
+}
 /**
  * main - Copies the content of a file to another file.
  *
@@ -34,7 +52,7 @@ int main(int argc, char **argv)
 	if (file_to == -1)
 	{
 		dprintf(2, "Error: Can't write to %s\n", argv[2]);
-		close(file_from); /* may need to check close */
+		file_close(file_from);
 		exit(99);
 	}
 
@@ -43,14 +61,11 @@ int main(int argc, char **argv)
 		write(file_to, buffer, b_read);
 	} while (b_read >= 1024);
 
-	if (close(file_from) == -1)
-	{
-		dprintf(2, "Error: Can't close fd %d\n", file_from);
+	if (file_close(file_from) == -1)
 		exit(100);
-	}
-	if (close(file_to) == -1)
+	if (file_close(file_to) == -1)
 	{
-		dprintf(2, "Error: Can't close fd %d\n", file_to);
+		file_close(file_from);
 		exit(100);
 	}
 	return (0);
