@@ -42,7 +42,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 	}
 
-	b_write = write(1, buffer, letters);
+	b_write = write(1, buffer, b_read);
 	free(buffer);
 
 	if (b_write < 0)
