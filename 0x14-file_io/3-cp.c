@@ -83,7 +83,7 @@ int main(int argc, char **argv)
 	if (file_to < 0)
 	{
 		write_error(argv[2]);
-		close(file_from);
+		close_file(file_from);
 		exit(99);
 	}
 	do {
@@ -91,16 +91,16 @@ int main(int argc, char **argv)
 		if (b_read < 0)
 		{
 			read_error(argv[1]);
-			close(file_from);
-			close(file_to);
+			close_file(file_from);
+			close_file(file_to);
 			exit(98);
 		}
 		b_write = write(file_to, buffer, b_read);
 		if (b_write < 0)
 		{
 			write_error(argv[2]);
-			close(file_from);
-			close(file_to);
+			close_file(file_from);
+			close_file(file_to);
 			exit(99);
 		}
 	} while (b_read >= 1024);
