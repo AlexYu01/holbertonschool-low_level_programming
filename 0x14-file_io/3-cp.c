@@ -17,7 +17,7 @@ void write_error(char *file);
 
 int close_file(int file_desc)
 {
-	if (close(file_desc) == -1)
+	if (close(file_desc) < 0)
 	{
 		dprintf(2, "Error: Can't close fd %d\n", file_desc);
 		return (-1);
@@ -74,13 +74,13 @@ int main(int argc, char **argv)
 		exit(97);
 	}
 	file_from = open(argv[1], O_RDONLY);
-	if (file_from == -1)
+	if (file_from < 0)
 	{
 		read_error(argv[1]);
 		exit(98);
 	}
 	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	if (file_to == -1)
+	if (file_to < 0)
 	{
 		write_error(argv[2]);
 		close(file_from);
@@ -88,7 +88,7 @@ int main(int argc, char **argv)
 	}
 	do {
 		b_read = read(file_from, buffer, 1024);
-		if (b_read == -1)
+		if (b_read < 0)
 		{
 			read_error(argv[1]);
 			close(file_from);
@@ -96,7 +96,7 @@ int main(int argc, char **argv)
 			exit(98);
 		}
 		b_write = write(file_to, buffer, b_read);
-		if (b_write == -1)
+		if (b_write < 0)
 		{
 			write_error(argv[2]);
 			close(file_from);
@@ -105,9 +105,9 @@ int main(int argc, char **argv)
 		}
 	} while (b_read >= 1024);
 
-	if (close_file(file_from) == -1)
+	if (close_file(file_from) < 0)
 		exit(100);
-	if (close_file(file_to) == -1)
+	if (close_file(file_to) < 0)
 	{
 		close_file(file_from);
 		exit(100);
