@@ -37,13 +37,15 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	b_read = read(file, buffer, letters);
 	close(file);
 	if (b_read == -1)
+	{
+		free(buffer);
 		return (0);
+	}
 	buffer[letters] = '\0';
 
 	b_write = write(1, buffer, b_read);
 	free(buffer);
 
-	/* unclear on whether or not to check written with letters */
 	if (b_write == -1)
 		return (0);
 
