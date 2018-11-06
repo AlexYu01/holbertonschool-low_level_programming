@@ -64,8 +64,8 @@ int main(int argc, char **argv)
 {
 	int file_to;
 	int file_from;
-	ssize_t b_read;
-	ssize_t b_write;
+	int b_read;
+	int b_write;
 	char buffer[1024];
 
 	if (argc != 3)
