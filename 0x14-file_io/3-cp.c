@@ -19,7 +19,7 @@ int close_file(int file_desc)
 {
 	if (close(file_desc) == -1)
 	{
-		dprintf(2, "Error: Can't close fd %d\n", file_desc);
+		dprintf(2, "Error: Can't close fd%d\n", file_desc);
 		return (-1);
 	}
 	return (1);
