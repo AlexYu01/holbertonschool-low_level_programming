@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>
+
 int close_file(int file_desc);
 
 /**
@@ -52,7 +53,7 @@ int main(int argc, char **argv)
 	if (file_to == -1)
 	{
 		dprintf(2, "Error: Can't write to %s\n", argv[2]);
-		file_close(file_from);
+		close_file(file_from);
 		exit(99);
 	}
 
@@ -61,12 +62,12 @@ int main(int argc, char **argv)
 		write(file_to, buffer, b_read);
 	} while (b_read >= 1024);
 
-	if (file_close(file_from) == -1)
+	if (close_file(file_from) == -1)
 		exit(100);
-	if (file_close(file_to) == -1)
+	if (close_file(file_to) == -1)
 	{
-		file_close(file_from);
-		exit(100);
+		close_file(file_from);
+	exit(100);
 	}
 	return (0);
 }
