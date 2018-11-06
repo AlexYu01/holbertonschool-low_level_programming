@@ -3,7 +3,8 @@
 #include <stdlib.h>
 
 /**
- * read_textfile - Reads a text file and prints it to the POSIX standard output.
+ * read_textfile - Reads a text file and prints it to the POSIX standard output
+ * .
  *
  * @filename: The pathfile to the file to be read.
  * @letters: size_t, the amount of letters to be read and printed.

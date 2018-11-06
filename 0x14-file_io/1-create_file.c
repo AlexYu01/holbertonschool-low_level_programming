@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 /**
- * creat_file - Creates a file with read and write permissions for user if the
+ * create_file - Creates a file with read and write permissions for user if the
  * file does not exist. Truncates the file if it exists. Fills the file with
  * the contents of text_content.
  *
