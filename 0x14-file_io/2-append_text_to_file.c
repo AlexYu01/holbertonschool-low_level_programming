@@ -24,19 +24,17 @@ int append_text_to_file(const char *filename, char *text_content)
 	if (file == -1)
 		return (-1);
 
+	b_write = 0;
 	if (text_content)
 	{
 		for (length = 0; text_content[length]; length++)
 			;
 
 		b_write = write(file, text_content, length);
-		close(file);
-		if (b_write == -1)
-			return (-1);
 	}
-	else
-	{
-		close(file);
-	}
+	close(file);
+	if (b_write == -1)
+		return (-1);
+
 	return (1);
 }
