@@ -17,16 +17,11 @@ void hash_table_print(const hash_table_t *ht)
 		for (idx = 0; idx < ht->size; idx++)
 		{
 			cur = (ht->array)[idx];
-			if (comma == 1 && cur != NULL)
-			{
-				printf(", ");
-				comma = 0;
-			}
 			while (cur != NULL)
 			{
-				printf("'%s': '%s'", cur->key, cur->value);
-				if (cur->next != NULL)
+				if (comma == 1)
 					printf(", ");
+				printf("'%s': '%s'", cur->key, cur->value);
 				cur = cur->next;
 				comma = 1;
 			}
