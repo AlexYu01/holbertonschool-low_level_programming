@@ -74,7 +74,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		{
 			free(cur->value);
 			cur->value = v_copy;
-			break;
+			return (1);
 		}
 		cur = cur->next;
 	}
