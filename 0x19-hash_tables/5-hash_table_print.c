@@ -11,9 +11,9 @@ void hash_table_print(const hash_table_t *ht)
 	char comma = 0;
 	unsigned long int idx;
 
-	printf("{");
 	if (ht != NULL)
 	{
+		printf("{");
 		for (idx = 0; idx < ht->size; idx++)
 		{
 			cur = (ht->array)[idx];
@@ -26,6 +26,6 @@ void hash_table_print(const hash_table_t *ht)
 				comma = 1;
 			}
 		}
+		printf("}\n");
 	}
-	printf("}\n");
 }
