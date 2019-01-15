@@ -150,7 +150,7 @@ void insert_sorted(shash_table_t *ht, shash_node_t *new)
  *
  * Return: Value associated with the key, or NULL if key couldn't be found.
  */
-char *shash_table_get(const hash_table_t *ht, const char *key)
+char *shash_table_get(const shash_table_t *ht, const char *key)
 {
 	unsigned long int idx;
 	shash_node_t *cur;
