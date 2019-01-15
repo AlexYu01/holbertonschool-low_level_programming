@@ -4,7 +4,7 @@
 #include "hash_tables.h"
 
 void insert_sorted(shash_table_t *ht, shash_node_t *new);
-
+unsigned long int ascii_val(const char *string);
 /**
  * shash_table_create - Allocates memory for a sorted hash table.
  *
@@ -16,6 +16,7 @@ void insert_sorted(shash_table_t *ht, shash_node_t *new);
 shash_table_t *shash_table_create(unsigned long int size)
 {
 	shash_table_t *new;
+	unsigned long int idx;
 
 	if (size == 0)
 		return (NULL);
@@ -26,7 +27,11 @@ shash_table_t *shash_table_create(unsigned long int size)
 		new->array = malloc(sizeof(shash_node_t *) * size);
 		if (new->array == NULL)
 			return (NULL);
+		for (idx = 0; idx < size; idx++)
+			new->array[idx] = NULL;
 		new->size = size;
+		new->shead = NULL;
+		new->stail = NULL;
 	}
 
 	return (new);
@@ -100,6 +105,8 @@ void insert_sorted(shash_table_t *ht, shash_node_t *new)
 {
 	shash_node_t *cur;
 
+	new->sprev = NULL;
+	new->snext = NULL;
 	if (ht->shead == NULL)
 	{
 		ht->shead = new;
@@ -110,7 +117,8 @@ void insert_sorted(shash_table_t *ht, shash_node_t *new)
 
 	while (cur != NULL)
 	{
-		if (strcmp(cur->key, new->key) > 0)
+		/*if (strcmp(cur->key, new->key) > 0)*/
+		if (ascii_val(cur->key) > ascii_val(new->key))
 		{
 			new->snext = cur;
 			new->sprev = cur->sprev;
@@ -130,6 +138,24 @@ void insert_sorted(shash_table_t *ht, shash_node_t *new)
 		cur->snext = new;
 		ht->stail = new;
 	}
+}
+
+/**
+ * ascii_val - Calculates the total ascii value of each character in the string
+ * .
+ *
+ * @string: Pointer to the string.
+ *
+ * Return: The total of the ascii values.
+ */
+unsigned long int ascii_val(const char *string)
+{
+	unsigned long int total = 0;
+	unsigned long int idx;
+
+	for (idx = 0; string[idx] != '\0'; idx++)
+		total += string[idx];
+	return (total);
 }
 
 /**
