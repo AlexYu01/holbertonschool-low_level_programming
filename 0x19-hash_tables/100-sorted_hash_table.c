@@ -58,7 +58,8 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	unsigned long int idx;
 	shash_node_t *cur, *new;
 
-	if (ht == NULL || key == NULL || strcmp(key, "") == 0 || value == NULL)
+	if (ht == NULL || key == NULL || strcmp(key, "") == 0 ||
+			value == NULL || ht->array == NULL || ht->size == 0)
 		return (0);
 
 	v_copy = strdup(value);
@@ -156,7 +157,8 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 	shash_node_t *cur;
 	char *v_copy = NULL;
 
-	if (ht == NULL || key == NULL)
+	if (ht == NULL || key == NULL || strlen(key) == 0 ||
+			ht->array == NULL || ht->size == 0)
 		return (NULL);
 
 	idx = key_index((const unsigned char *) key, ht->size);
@@ -246,6 +248,7 @@ void shash_table_delete(shash_table_t *ht)
 			cur->snext = NULL;
 			cur->sprev = NULL;
 			free(cur->key);
+			cur->key = NULL;
 			free(cur->value);
 			free(cur);
 			cur = nxt;
