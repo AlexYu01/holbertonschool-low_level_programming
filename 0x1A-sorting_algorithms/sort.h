@@ -1,6 +1,8 @@
 #ifndef _SORT_H_
 #define _SORT_H_
 #include <stddef.h>
+
+#define SIZE_MAX ((size_t)-1)
 /**
  * struct listint_s - Doubly linked list node
  *
