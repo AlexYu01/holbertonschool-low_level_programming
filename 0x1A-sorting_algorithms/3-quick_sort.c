@@ -60,7 +60,7 @@ size_t partition(int *array, size_t lo, size_t hi, size_t size)
 	{
 		if (array[jdx] < pivot)
 		{
-			if (idx != jdx)
+			if (idx != jdx && array[idx] != array[jdx])
 			{
 				temp = array[idx];
 				array[idx] = array[jdx];
@@ -70,7 +70,7 @@ size_t partition(int *array, size_t lo, size_t hi, size_t size)
 			idx++;
 		}
 	}
-	if (idx != jdx)
+	if (idx != jdx && array[idx] != array[jdx])
 	{
 		temp = array[idx];
 		array[idx] = array[jdx];
