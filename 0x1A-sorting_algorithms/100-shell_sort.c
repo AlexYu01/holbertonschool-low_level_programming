@@ -1,7 +1,7 @@
 #include "sort.h"
 
 /**
- * quick_sort - Performs shell sort on an array of integers in ascending order.
+ * shell_sort - Performs shell sort on an array of integers in ascending order.
  * The Knuth sequence will be used for determining the gap.
  *
  * @array: Pointer to an integer array.
