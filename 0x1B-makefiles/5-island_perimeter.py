@@ -20,14 +20,12 @@ def island_perimeter(grid):
     r = len(grid)
     if r is 0:
         return 0
-    if not isinstance(grid[0], list):
-        return 0
-    c = len(grid[0])
-    if c is 0:
-        return 0
 
     p = 0
     for i in range(r):
+        if not isinstance(grid[i], list):
+            return p
+        c = len(grid[i])
         for j in range(c):
             if grid[i][j] is 1:
                 if 0 < j < c - 1:
