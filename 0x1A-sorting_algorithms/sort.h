@@ -2,7 +2,6 @@
 #define _SORT_H_
 #include <stddef.h>
 
-#define SIZE_MAX ((size_t)-1)
 /**
  * struct listint_s - Doubly linked list node
  *
@@ -29,4 +28,5 @@ void selection_sort(int *array, size_t size);
 
 void quick_sort(int *array, size_t size);
 
+void shell_sort(int *array, size_t size);
 #endif
