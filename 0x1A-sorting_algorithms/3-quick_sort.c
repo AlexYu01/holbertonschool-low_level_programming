@@ -34,8 +34,7 @@ void quick_sort_main(int *array, size_t lo, size_t hi, size_t size)
 		p = partition(array, lo, hi, size);
 		if (p > 0)
 			quick_sort_main(array, lo, p - 1, size);
-		if (p < size)
-			quick_sort_main(array, p + 1, hi, size);
+		quick_sort_main(array, p + 1, hi, size);
 	}
 }
 
