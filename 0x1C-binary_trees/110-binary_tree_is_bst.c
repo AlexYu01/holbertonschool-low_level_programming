@@ -12,11 +12,22 @@ char traverse(const binary_tree_t *node, int min, int max);
  */
 int binary_tree_is_bst(const binary_tree_t *tree)
 {
+	int min, max;
+
 	if (tree == NULL)
 		return (0);
 
-	return (traverse(tree->left, INT_MIN, tree->n) &&
-			traverse(tree->right, tree->n, INT_MAX));
+	min = INT_MIN;
+	max = INT_MAX;
+	if (tree->parent != NULL)
+	{
+		if (tree->parent->left == tree)
+			max = tree->parent->n;
+		else
+			min = tree->parent->n;
+	}
+	return (traverse(tree->left, min, tree->n) &&
+			traverse(tree->right, tree->n, max));
 }
 
 /**
