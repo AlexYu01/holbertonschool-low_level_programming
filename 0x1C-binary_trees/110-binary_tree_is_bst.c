@@ -12,22 +12,10 @@ char traverse(const binary_tree_t *node, int min, int max);
  */
 int binary_tree_is_bst(const binary_tree_t *tree)
 {
-	int min, max;
-
 	if (tree == NULL)
 		return (0);
 
-	min = INT_MIN;
-	max = INT_MAX;
-	if (tree->parent != NULL)
-	{
-		if (tree->parent->left == tree)
-			max = tree->parent->n;
-		else
-			min = tree->parent->n;
-	}
-	return (traverse(tree->left, min, tree->n) &&
-			traverse(tree->right, tree->n, max));
+	return (traverse(tree, INT_MIN, INT_MAX));
 }
 
 /**
@@ -45,16 +33,9 @@ char traverse(const binary_tree_t *node, int min, int max)
 	if (node == NULL)
 		return (1);
 
-	if (node->n >= min && node->n <= max)
-	{
-		if (node->parent != NULL)
-		{
-			if (node->parent->n == node->n)
-				return (0);
-		}
-		return (traverse(node->left, min, node->n) &&
-				traverse(node->right, node->n, max));
-	}
+	if (node->n < min || node->n > max)
+		return (0);
 
-	return (0);
+	return (traverse(node->left, min, node->n - 1) &&
+			traverse(node->right, node->n + 1, max));
 }
