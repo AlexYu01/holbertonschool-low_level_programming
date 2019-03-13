@@ -33,9 +33,11 @@ char traverse(const binary_tree_t *node, int min, int max)
 	if (node == NULL)
 		return (1);
 
-	if (node->n < min || node->n > max)
+	if (min == max)
 		return (0);
 
-	return (traverse(node->left, min, node->n - 1) &&
-			traverse(node->right, node->n + 1, max));
+	if (node->n >= min && node->n <= max)
+		return (traverse(node->left, min, node->n) &&
+				traverse(node->right, node->n, max));
+	return (0);
 }
