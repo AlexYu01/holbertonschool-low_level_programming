@@ -53,7 +53,7 @@ char traverse(const binary_tree_t *node, char *g_child)
 	if (left == 0 && right == 1)
 		return (0);
 
-	if (node_lg_child == 1 && node_rg_child >= 1)
+	if (node_lg_child <= 1 && node_rg_child >= 1)
 		return (0);
 
 	return (1);
