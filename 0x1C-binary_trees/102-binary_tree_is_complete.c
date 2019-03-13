@@ -46,8 +46,11 @@ char traverse(const binary_tree_t *node, char *g_child)
 		(*g_child)++;
 		right = traverse(node->right, &node_rg_child);
 	}
-
+/*
 	if ((left ^ right) && (node_rg_child != 0 || node_lg_child != 0))
+		return (0);
+*/
+	if (left == 1 && right == 0 && node_rg_child != 0)
 		return (0);
 
 	if (left == 0 && right == 0 && (node_rg_child != 0 || node_lg_child != 0))
