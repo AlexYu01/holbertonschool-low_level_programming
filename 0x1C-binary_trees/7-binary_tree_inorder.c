@@ -10,7 +10,7 @@ void inorder_traverse(const binary_tree_t *node, void (*func)(int));
  */
 void binary_tree_inorder(const binary_tree_t *tree, void (*func)(int))
 {
-	if (tree != NULL)
+	if (tree != NULLi && func != NULL)
 		inorder_traverse(tree, func);
 }
 
