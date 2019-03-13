@@ -1,5 +1,4 @@
 #include "binary_trees.h"
-#include <stdio.h>
 
 /**
  * binary_tree_rotate_right - Performs a right-rotation on a binary tree.
@@ -21,6 +20,8 @@ binary_tree_t *binary_tree_rotate_right(binary_tree_t *tree)
 
 	tree->parent = new_root;
 	tree->left = new_root->right;
+	if (tree->left != NULL)
+		tree->left->parent = tree;
 	new_root->parent = NULL;
 	new_root->right = tree;
 
