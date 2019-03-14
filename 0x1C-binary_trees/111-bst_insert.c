@@ -14,12 +14,10 @@ bst_t *bst_insert(bst_t **tree, int value)
 	bst_t *new, *cur;
 
 	new = NULL;
-
 	if (tree == NULL)
 		return (NULL);
 
 	cur = *tree;
-
 	if (cur != NULL)
 	{
 		while (1)
