@@ -16,7 +16,7 @@ avl_t *fix_imbalance(avl_t *imbal);
  */
 avl_t *avl_insert(avl_t **tree, int value)
 {
-	avl_t *new, *root_child, *imbalanced, *imbal_fixed;
+	avl_t *new, *imbalanced, *imbal_fixed;
 	int height = 0;
 
 	new = NULL;
@@ -27,12 +27,8 @@ avl_t *avl_insert(avl_t **tree, int value)
 
 	if (*tree != NULL)
 	{
-		if (value < (*tree)->n)
-			root_child = (*tree)->left;
-		else
-			root_child = (*tree)->right;
 		new = insert_in_branch(*tree, value);
-		imbalanced = find_imbalance(root_child, &height);
+		imbalanced = find_imbalance(*tree, &height);
 		if (imbalanced != NULL)
 			imbal_fixed = fix_imbalance(imbalanced);
 		if (imbalanced == *tree)
