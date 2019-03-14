@@ -79,20 +79,15 @@ bst_t *bst_replace(bst_t *parent, bst_t *node, bst_t *suc)
 	}
 	if (suc != NULL)
 	{
-		if (suc->parent != NULL)
-		{
-			if (suc->parent->left == suc)
-				suc->parent->left = NULL;
-			else
-				suc->parent->right = NULL;
-		}
-		suc->parent = parent;
 		if (node->left != NULL && node->right != NULL)
 		{
-			if (node->left != suc && node->right != suc)
+			if (node->left != suc)
 			{
 				suc->left = node->left;
 				node->left->parent = suc;
+			}
+			if (node->right != suc)
+			{
 				r_child = suc;
 				while (r_child->right != NULL)
 					r_child = r_child->right;
@@ -101,6 +96,14 @@ bst_t *bst_replace(bst_t *parent, bst_t *node, bst_t *suc)
 			}
 
 		}
+		if (suc->parent != NULL)
+		{
+			if (suc->parent->left == suc)
+				suc->parent->left = NULL;
+			else
+				suc->parent->right = NULL;
+		}
+		suc->parent = parent;
 	}
 
 	return (suc);
