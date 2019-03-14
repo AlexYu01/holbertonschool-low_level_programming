@@ -2,9 +2,6 @@
 #include <stdio.h>
 
 avl_t *insert_in_branch(avl_t *cur, int value);
-avl_t *find_imbalance(avl_t *cur, int *height);
-avl_t *fix_imbalance(avl_t *imbal);
-
 
 /**
  * avl_insert - Inserts a value in an AVL tree.

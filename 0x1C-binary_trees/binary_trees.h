@@ -108,5 +108,7 @@ int heap_extract(heap_t **root);
 
 int *heap_to_sorted_array(heap_t *heap, size_t *size);
 
+avl_t *find_imbalance(avl_t *cur, int *height);
+avl_t *fix_imbalance(avl_t *imbal);
 
 #endif

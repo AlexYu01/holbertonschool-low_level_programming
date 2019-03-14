@@ -3,8 +3,6 @@
 
 avl_t *successor(avl_t *node);
 avl_t *avl_replace(avl_t *parent, avl_t *node, avl_t *suc);
-avl_t *find_imbalance(avl_t *cur, int *height);
-avl_t *fix_imbalance(avl_t *imbal);
 
 /**
  * avl_remove - Removes a value from the AVL tree if it exists.
