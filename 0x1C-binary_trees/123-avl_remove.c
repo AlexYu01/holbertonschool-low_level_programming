@@ -3,6 +3,8 @@
 
 avl_t *successor(avl_t *node);
 avl_t *avl_replace(avl_t *parent, avl_t *node, avl_t *suc);
+avl_t *find_imbalance_r(avl_t *cur, int *height);
+avl_t *fix_imbalance_r(avl_t *imbal);
 
 /**
  * avl_remove - Removes a value from the AVL tree if it exists.
@@ -48,9 +50,9 @@ avl_t *avl_remove(avl_t *root, int value)
 
 	free(node);
 
-	node = find_imbalance(root, &height);
+	node = find_imbalance_r(root, &height);
 	if (node != NULL)
-		replacement = fix_imbalance(node);
+		replacement = fix_imbalance_r(node);
 	if (node == root)
 		root = replacement;
 
@@ -122,4 +124,90 @@ avl_t *successor(avl_t *node)
 		node = node->left;
 
 	return (node);
+}
+
+/**
+ * find_imbalance_r - Search for imbalance within an AVL tree if it exists.
+ *
+ * @cur: Pointer to the current node within AVL tree.
+ * @height: Pointer to counter for current height of the tree.
+ *
+ * Return: Pointer to the node with the imbalance, NULL if there is no
+ * imbalance.
+ */
+avl_t *find_imbalance_r(avl_t *cur, int *height)
+{
+	int left_h, right_h, diff;
+	avl_t *imbalance;
+
+	imbalance = NULL;
+
+	if (cur == NULL)
+		return (NULL);
+
+	(*height)++;
+	left_h = *height;
+	right_h = *height;
+
+	imbalance = find_imbalance_r(cur->left, &left_h);
+	if (imbalance != NULL)
+		return (imbalance);
+
+	imbalance = find_imbalance_r(cur->right, &right_h);
+	if (imbalance != NULL)
+		return (imbalance);
+
+	if (left_h < right_h)
+		(*height) = right_h;
+	else
+		(*height) = left_h;
+
+	diff = left_h - right_h;
+	if (diff < -1 || diff > 1)
+		return (cur);
+	else
+		return (NULL);
+}
+
+/**
+ * fix_imbalance_r - Correct the imbalance within the subtree.
+ *
+ * @imbal: Pointer to the root of the imbalanced tree.
+ *
+ * Return: New root after rotation(s).
+ */
+avl_t *fix_imbalance_r(avl_t *imbal)
+{
+	int bal_fac, child_bal_fac;
+	avl_t *new_root;
+
+	bal_fac = binary_tree_balance(imbal);
+	if (bal_fac > 0)
+	{
+		child_bal_fac = binary_tree_balance(imbal->left);
+		if (child_bal_fac > 0)
+		{
+			new_root = binary_tree_rotate_right(imbal);
+		}
+		else
+		{
+			new_root = binary_tree_rotate_left(imbal->left);
+			new_root = binary_tree_rotate_right(imbal);
+		}
+	}
+	else
+	{
+		child_bal_fac = binary_tree_balance(imbal->right);
+		if (child_bal_fac > 0)
+		{
+			new_root = binary_tree_rotate_right(imbal->right);
+			new_root = binary_tree_rotate_left(imbal);
+		}
+		else
+		{
+			new_root = binary_tree_rotate_left(imbal);
+		}
+	}
+
+	return (new_root);
 }
