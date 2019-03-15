@@ -1,5 +1,4 @@
 #include "binary_trees.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 heap_t *reorder_heap(heap_t **root, heap_t *node);
@@ -128,26 +127,19 @@ queue *enqueue(queue *tail, heap_t *node)
 /**
  * reorder_heap - Readjusts the heap if heap property is broken.
  *
- * @root: Double pointer to the root of the entire max heap tree.
  * @node: Current node that is the newly created node.
  *
  * Return: Pointer to the new node.
  */
-heap_t *reorder_heap(heap_t **root, heap_t *node)
+heap_t *reorder_heap(heap_t *node)
 {
 	heap_t *parent;
 	int temp;
-
-	(void)root;
 
 	parent = node->parent;
 
 	while (parent != NULL && node->n > parent->n)
 	{
-		/*swap_asc(parent, node);*/
-		/*if (parent == *root)*/
-		/*	*root = node;*/
-		/*parent = node->parent;*/
 		temp = parent->n;
 		parent->n = node->n;
 		node->n = temp;
