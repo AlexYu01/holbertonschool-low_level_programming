@@ -1,6 +1,5 @@
 #include "binary_trees.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 void reorder_heap_r(heap_t *node);
 heap_t *find_last(heap_t *node);
