@@ -1,7 +1,7 @@
 #include "binary_trees.h"
 #include <stdio.h>
 
-void reorder_heap(heap_t **root, heap_t *node);
+heap_t *reorder_heap(heap_t **root, heap_t *node);
 void swap_asc(heap_t *node_p, heap_t *node);
 heap_t *insert_node(heap_t *parent, int value);
 heap_t *has_one_child(heap_t *root);
@@ -40,8 +40,7 @@ heap_t *heap_insert(heap_t **root, int value)
 	new = insert_node(parent, value);
 	if (new == NULL)
 		return (NULL);
-
-	reorder_heap(root, new);
+	new = reorder_heap(root, new);
 	return (new);
 }
 
@@ -50,8 +49,10 @@ heap_t *heap_insert(heap_t **root, int value)
  *
  * @root: Double pointer to the root of the entire max heap tree.
  * @node: Current node that is the newly created node.
+ *
+ * Return: Pointer to the new node.
  */
-void reorder_heap(heap_t **root, heap_t *node)
+heap_t *reorder_heap(heap_t **root, heap_t *node)
 {
 	heap_t *parent;
 	int temp;
@@ -72,6 +73,8 @@ void reorder_heap(heap_t **root, heap_t *node)
 		node = parent;
 		parent = node->parent;
 	}
+
+	return (node);
 }
 
 /**
