@@ -1,65 +1,59 @@
 #include "binary_trees.h"
 
-char traverse(const binary_tree_t *node, char *g_child);
+char traverse(binary_tree_t *node, size_t idx, size_t max_idx);
+size_t get_size(const binary_tree_t *node);
 
 /**
- * binary_tree_is_complete - Checks if the tree is complete.
+ * binary_tree_is_complete - Check if the binary tree is complete.
  *
- * @tree: Pointer to the root node of the tree to check.
+ * @tree: Pointer to the root node of the tree.
  *
  * Return: 1 if the tree is complete, 0 otherwise.
  */
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
-	char node_g_child = 0;
+	size_t size = 0;
 
 	if (tree == NULL)
 		return (0);
-	return ((int) traverse(tree, &node_g_child));
+
+	size = get_size(tree);
+	return (traverse((binary_tree_t *)tree, 0, size - 1));
 }
 
 /**
- * traverse - Traverses a binary tree depth-first.
+ * traverse - Traverse the binary tree for the valid level to print.
  *
- * @node: Pointer to the current root of the tree.
- * @g_child: Pointer to the counter for the number of grand children of the
- * parent node of node.
+ * @node: Pointer to the root node of the current tree.
+ * @idx: The index of the current node.
+ * @max_idx: The last index of the tree in array form.
  *
- * Return: 1 if the tree is complete, 0 otherwise.
+ * Return: 1 if there was a node on the target level, -1 otherwise.
  */
-char traverse(const binary_tree_t *node, char *g_child)
+char traverse(binary_tree_t *node, size_t idx, size_t max_idx)
 {
-	char left, right, node_lg_child, node_rg_child;
-
-	node_lg_child = 0;
-	node_rg_child = 0;
-	left = 0;
-	right = 0;
-	if (node->left != NULL)
+	if (node == NULL)
 	{
-		(*g_child)++;
-		left = traverse(node->left, &node_lg_child);
+		if (idx <= max_idx)
+			return (0);
+		return (1);
 	}
 
-	if (node->right != NULL)
-	{
-		(*g_child)++;
-		right = traverse(node->right, &node_rg_child);
-	}
-/*
-	if ((left ^ right) && (node_rg_child != 0 || node_lg_child != 0))
-		return (0);
-*/
-	if (left == 1 && right == 0 && node_rg_child != 0)
-		return (0);
+	return (traverse(node->left, 2 * idx + 1, max_idx) &&
+			traverse(node->right, 2 * idx + 2, max_idx));
+}
 
-	if (left == 0 && right == 0 && (node_rg_child != 0 || node_lg_child != 0))
-		return (0);
-	if (left == 0 && right == 1)
-		return (0);
 
-	if (node_lg_child <= 1 && node_rg_child >= 1)
+/**
+ * get_size - Recursively travel down the left side of a binary tree first.
+ *
+ * @node: Pointer to the current node.
+ *
+ * Return: The size of the tree.
+ */
+size_t get_size(const binary_tree_t *node)
+{
+	if (node == NULL)
 		return (0);
-
-	return (1);
+	return (1 + get_size(node->left) + get_size(node->right));
 }
