@@ -1,4 +1,5 @@
 #include "binary_trees.h"
+#include <stdio.h>
 
 void reorder_heap(heap_t **root, heap_t *node);
 void swap_asc(heap_t *node_p, heap_t *node);
@@ -53,14 +54,22 @@ heap_t *heap_insert(heap_t **root, int value)
 void reorder_heap(heap_t **root, heap_t *node)
 {
 	heap_t *parent;
+	int temp;
+
+	(void)root;
 
 	parent = node->parent;
 
 	while (parent != NULL && node->n > parent->n)
 	{
-		swap_asc(parent, node);
-		if (parent == *root)
-			*root = node;
+		/*swap_asc(parent, node);*/
+		/*if (parent == *root)*/
+		/*	*root = node;*/
+		/*parent = node->parent;*/
+		temp = parent->n;
+		parent->n = node->n;
+		node->n = temp;
+		node = parent;
 		parent = node->parent;
 	}
 }
