@@ -31,7 +31,7 @@ heap_t *heap_insert(heap_t **root, int value)
 	new = insert_node(parent, value);
 	if (new == NULL)
 		return (NULL);
-	new = reorder_heap(root, new);
+	new = reorder_heap(new);
 
 	return (new);
 }
