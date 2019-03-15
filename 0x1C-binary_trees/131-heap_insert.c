@@ -1,7 +1,7 @@
 #include "binary_trees.h"
 #include <stdlib.h>
 
-heap_t *reorder_heap(heap_t **root, heap_t *node);
+heap_t *reorder_heap(heap_t *node);
 heap_t *insert_node(heap_t *parent, int value);
 heap_t *find_a_parent(heap_t *node);
 queue *enqueue(queue *tail, heap_t *node);
