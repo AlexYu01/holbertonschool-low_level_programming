@@ -1,5 +1,4 @@
 #include "binary_trees.h"
-#include <stdio.h>
 
 avl_t *insert_in_branch(avl_t *cur, int value);
 avl_t *find_imbalance(avl_t *cur, int *height);
