@@ -34,9 +34,7 @@ int advanced_binary(int *array, size_t size, int value)
  */
 int binary_helper(int *array, int lo, int hi, int value)
 {
-	int i, m, lowest_i;
-
-	lowest_i = -1;
+	int i, m;
 
 	if (lo > hi)
 		return (-1);
@@ -46,20 +44,13 @@ int binary_helper(int *array, int lo, int hi, int value)
 		printf(", %d", array[i]);
 	printf("\n");
 
-	m = (hi - lo) / 2 + lo;
-	if (value == array[m])
-	{
-		if (lo != m && m - 1 > 0 && array[m - 1] == value)
-			lowest_i = binary_helper(array, lo, m, value);
-		if (lowest_i != -1 && lowest_i < m)
-			return (lowest_i);
-		else
-			return (m);
-	}
+	if (array[lo] == value)
+		return (lo);
 
+	m = (hi - lo) / 2 + lo;
 
 	if (value > array[m])
 		return (binary_helper(array, m + 1, hi, value));
 	else
-		return (binary_helper(array, lo, m - 1, value));
+		return (binary_helper(array, lo, m, value));
 }
