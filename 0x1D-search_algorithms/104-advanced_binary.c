@@ -1,6 +1,6 @@
 #include "search_algos.h"
 
-ssize_t binary_helper(int *array, ssize_t lo, ssize_t hi, int value);
+int binary_helper(int *array, int lo, int hi, int value);
 
 /**
  * advanced_binary - Performs binary search on a sorted array of integers.
@@ -18,7 +18,7 @@ int advanced_binary(int *array, size_t size, int value)
 	if (array == NULL || size < 1)
 		return (-1);
 
-	return ((int)binary_helper(array, 0, size - 1, value));
+	return (binary_helper(array, 0, size - 1, value));
 }
 
 /**
@@ -32,9 +32,9 @@ int advanced_binary(int *array, size_t size, int value)
  * Return: The index of where `value` is first found in the subarray. -1 if
  * `value` was not found.
  */
-ssize_t binary_helper(int *array, ssize_t lo, ssize_t hi, int value)
+int binary_helper(int *array, int lo, int hi, int value)
 {
-	ssize_t i, m, lowest_i;
+	int i, m, lowest_i;
 
 	lowest_i = -1;
 
