@@ -49,7 +49,7 @@ int binary_helper(int *array, int lo, int hi, int value)
 	m = (hi - lo) / 2 + lo;
 	if (value == array[m])
 	{
-		if (lo != m)
+		if (lo != m && m - 1 > 0 && array[m - 1] == value)
 			lowest_i = binary_helper(array, lo, m, value);
 		if (lowest_i != -1 && lowest_i < m)
 			return (lowest_i);
