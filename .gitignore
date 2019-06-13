@@ -1,0 +1,6 @@
+
+*.out
+*.o
+*.xml
+*.iml
+cmake*
