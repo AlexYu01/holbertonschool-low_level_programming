@@ -24,7 +24,7 @@ For installation on other platforms refer to [SDL installation](https://wiki.lib
 ```
 
 ### Maze Keyboard Control
-Please refer to [Maze Instructions](Maze Instructions) for keyboard controls
+Please refer to [Maze Instructions](https://github.com/AlexYu01/holbertonschool-low_level_programming/blob/master/maze/Maze%20Instructions) for keyboard controls
 
 ### Author
 - [Alex Yu](https://github.com/AlexYu01)
