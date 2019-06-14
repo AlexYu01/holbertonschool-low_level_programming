@@ -50,6 +50,8 @@ void init_keys(keys_state *keys)
 	keys->retreat = 0;
 	keys->left = 0;
 	keys->right = 0;
+	keys->m_left = 0;
+	keys->m_right = 0;
 }
 
 /**
