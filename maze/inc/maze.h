@@ -2,8 +2,9 @@
 #define MAZE_MAZE_H
 
 #include <SDL2/SDL.h>
-#include "input.h"
 #include "init.h"
+#include "input.h"
+#include "update.h"
 
 void render_maze(SDL_Instance instance, map maze, player status);
 

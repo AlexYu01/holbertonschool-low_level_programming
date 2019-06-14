@@ -4,8 +4,12 @@
 #include <SDL2/SDL.h>
 #include "init.h"
 
-int poll_inputs(keys_state *keys);
+char poll_inputs(keys_state *keys);
 
-void update_player(keys_state keys, player *status);
+void handle_mouse(SDL_Event event, keys_state *keys);
+
+char handle_keydown(SDL_Event event, keys_state *keys);
+
+char handle_keyup(SDL_Event event, keys_state *keys);
 
 #endif

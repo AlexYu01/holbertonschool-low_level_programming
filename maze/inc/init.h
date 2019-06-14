@@ -29,6 +29,8 @@ typedef struct SDL_Instance
  * @retreat: Status of down arrow key or 'S' key.
  * @left: Status of left arrow key or 'A' key.
  * @right: Status of right arrow key or 'D' key.
+ * @m_left: Status of mouse left movement.
+ * @m_right: Status of mouse right movement.
  */
 typedef struct keys_state
 {
@@ -36,6 +38,8 @@ typedef struct keys_state
 	char retreat;
 	char left;
 	char right;
+	char m_left;
+	char m_right;
 } keys_state;
 
 /**
@@ -49,7 +53,6 @@ typedef struct keys_state
  * @camera_plane_x: The plane of the player's camera on the x-axis.
  * @camera_plane_y: The plane of the player's camera on the y-axis.
  * @time: Current time.
- * @old_time: Time since the last frame was rendered.
  */
 typedef struct player
 {
@@ -60,7 +63,7 @@ typedef struct player
 	double camera_plane_x;
 	double camera_plane_y;
 	double time;
-	double old_time;
+
 } player;
 
 /**
