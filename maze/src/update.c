@@ -16,7 +16,8 @@ void update_player(map maze, keys_state *keys, player *status)
 	old_time = status->time;
 	status->time = SDL_GetTicks();
 	frame_time = (status->time - old_time) / 1000.0;
-	status->move_speed = frame_time * 5.0;
+	status->move_speed = frame_time * (keys->crouch ? 1.0 : keys->sprint ?
+			9.0 : 4.0);
 	status->rot_speed = frame_time * 3.0;
 	status->pos_z = keys->crouch > 0 ? WINDOW_HEIGHT >> 2 : 0;
 

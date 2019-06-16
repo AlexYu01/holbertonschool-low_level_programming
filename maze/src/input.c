@@ -85,6 +85,9 @@ char handle_keydown(SDL_Event event, keys_state *keys)
 		case SDLK_z:
 			keys->crouch = !keys->crouch;
 			break;
+		case SDLK_LSHIFT:
+			keys->sprint = 1;
+			break;
 		case SDLK_ESCAPE:
 			return (1);
 		default:
@@ -120,6 +123,9 @@ void handle_keyup(SDL_Event event, keys_state *keys)
 		case SDLK_d:
 		case SDLK_RIGHT:
 			keys->right = 0;
+			break;
+		case SDLK_LSHIFT:
+			keys->sprint = 0;
 			break;
 		default:
 			break;

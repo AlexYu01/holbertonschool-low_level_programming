@@ -30,6 +30,7 @@ typedef struct SDL_Instance
  * @left: Status of left arrow key or 'A' key.
  * @right: Status of right arrow key or 'D' key.
  * @crouch: Status of crouch mode.
+ * @sprint: Status of sprint mode.
  * @m_left: Status of mouse left movement.
  * @m_right: Status of mouse right movement.
  */
@@ -40,6 +41,7 @@ typedef struct keys_state
 	char left;
 	char right;
 	char crouch;
+	char sprint;
 	char m_left;
 	char m_right;
 } keys_state;

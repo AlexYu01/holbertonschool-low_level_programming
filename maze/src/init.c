@@ -53,6 +53,7 @@ void init_keys(keys_state *keys)
 	keys->m_left = 0;
 	keys->m_right = 0;
 	keys->crouch = 0;
+	keys->sprint = 0;
 }
 
 /**
