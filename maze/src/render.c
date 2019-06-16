@@ -13,9 +13,9 @@ void render_maze(SDL_Instance instance, map maze, player status)
 	SDL_Rect rect;
 
 	rect.x = 0;
-	rect.y = WINDOW_HEIGHT >> 1;
+	rect.y = (WINDOW_HEIGHT >> 1) - (int)status.pos_z;
 	rect.w = WINDOW_WIDTH;
-	rect.h = rect.y;
+	rect.h = (WINDOW_HEIGHT >> 1) + (int)status.pos_z;
 	SDL_SetRenderDrawColor(instance.renderer, 0, 128, 0, 0);
 	SDL_RenderFillRect(instance.renderer, &rect);
 
@@ -63,7 +63,7 @@ void render_walls(SDL_Instance instance, map maze, player status)
 					(vars.map_y - status.pos_y + (1 - vars.step_y) / 2) / vars.ray_dir_y;
 			SDL_SetRenderDrawColor(instance.renderer, 114, 114, 114, 0);
 		}
-		draw_line(instance, x, perp_wall_dist);
+		draw_line(instance, x, perp_wall_dist, status);
 	}
 }
 
@@ -144,16 +144,18 @@ char do_DDA(map maze, camera *vars)
  * @window_x: The x coordinate position on thw window where a wall exists.
  * @perp_wall_dist: The distance projected on the camera direction to
  * the wall.
+ * @status: Struct containing variables on camera position.
  */
-void draw_line(SDL_Instance instance, int window_x, double perp_wall_dist)
+void draw_line(SDL_Instance instance, int window_x, double perp_wall_dist,
+		player status)
 {
 	int line_height;
 	int draw_start;
 	int draw_end;
 
 	line_height = (int)(WINDOW_HEIGHT / perp_wall_dist);
-	draw_start = -line_height / 2 + WINDOW_HEIGHT / 2;
-	draw_end = line_height / 2 + WINDOW_HEIGHT / 2;
+	draw_start = -line_height / 2 + WINDOW_HEIGHT / 2 - status.pos_z;
+	draw_end = line_height / 2 + WINDOW_HEIGHT / 2 - status.pos_z;
 	if (draw_start < 0)
 		draw_start = 0;
 	if (draw_end >= WINDOW_HEIGHT)

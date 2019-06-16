@@ -14,6 +14,7 @@ void calculate_step(player status, camera *vars);
 
 char do_DDA(map maze, camera *vars);
 
-void draw_line(SDL_Instance instance, int window_x, double perp_wall_dist);
+void draw_line(SDL_Instance instance, int window_x, double perp_wall_dist,
+		player status);
 
 #endif

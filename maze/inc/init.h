@@ -29,6 +29,7 @@ typedef struct SDL_Instance
  * @retreat: Status of down arrow key or 'S' key.
  * @left: Status of left arrow key or 'A' key.
  * @right: Status of right arrow key or 'D' key.
+ * @crouch: Status of crouch mode.
  * @m_left: Status of mouse left movement.
  * @m_right: Status of mouse right movement.
  */
@@ -38,6 +39,7 @@ typedef struct keys_state
 	char retreat;
 	char left;
 	char right;
+	char crouch;
 	char m_left;
 	char m_right;
 } keys_state;
@@ -46,8 +48,9 @@ typedef struct keys_state
  * struct player - Contains various information on the player's position and
  * camera.
  *
- * @pos_x: X-coordinate of the player's postion.
+ * @pos_x: X-coordinate of the player's position.
  * @pos_y: Y-coordinate of the player's position.
+ * @pos_z: Z-coordinate of the player's position.
  * @dir_x: Direction of the player on the x-axis.
  * @dir_y: Direction  of the player on the y-axis.
  * @camera_plane_x: The plane of the player's camera on the x-axis.
@@ -61,6 +64,7 @@ typedef struct player
 {
 	double pos_x;
 	double pos_y;
+	double pos_z;
 	double dir_x;
 	double dir_y;
 	double camera_plane_x;
@@ -68,7 +72,6 @@ typedef struct player
 	double time;
 	double move_speed;
 	double rot_speed;
-
 } player;
 
 /**

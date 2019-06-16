@@ -26,8 +26,7 @@ char poll_inputs(keys_state *keys)
 					return (1);
 				break;
 			case SDL_KEYUP:
-				if (handle_keyup(event, keys) == 1)
-					return (1);
+				handle_keyup(event, keys);
 				break;
 			case SDL_QUIT:
 				return (1);
@@ -81,10 +80,10 @@ char handle_keydown(SDL_Event event, keys_state *keys)
 			keys->right = 1;
 			break;
 		case SDLK_LCTRL:
-			if (SDL_GetRelativeMouseMode() == 0)
-				SDL_SetRelativeMouseMode(1);
-			else
-				SDL_SetRelativeMouseMode(0);
+			SDL_SetRelativeMouseMode(!SDL_GetRelativeMouseMode());
+			break;
+		case SDLK_z:
+			keys->crouch = !keys->crouch;
 			break;
 		case SDLK_ESCAPE:
 			return (1);
@@ -102,7 +101,7 @@ char handle_keydown(SDL_Event event, keys_state *keys)
  *
  * Return: 0 to continue rendering, otherwise 1 to close the window.
  */
-char handle_keyup(SDL_Event event, keys_state *keys)
+void handle_keyup(SDL_Event event, keys_state *keys)
 {
 	switch (event.key.keysym.sym)
 	{
@@ -125,5 +124,4 @@ char handle_keyup(SDL_Event event, keys_state *keys)
 		default:
 			break;
 	}
-	return (0);
 }

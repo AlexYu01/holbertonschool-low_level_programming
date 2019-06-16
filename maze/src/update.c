@@ -18,6 +18,8 @@ void update_player(map maze, keys_state *keys, player *status)
 	frame_time = (status->time - old_time) / 1000.0;
 	status->move_speed = frame_time * 5.0;
 	status->rot_speed = frame_time * 3.0;
+	status->pos_z = keys->crouch > 0 ? WINDOW_HEIGHT >> 2 : 0;
+
 	if (keys->advance == 1)
 		move_forwd(maze, status);
 	if (keys->retreat)

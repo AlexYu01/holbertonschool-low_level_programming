@@ -52,6 +52,7 @@ void init_keys(keys_state *keys)
 	keys->right = 0;
 	keys->m_left = 0;
 	keys->m_right = 0;
+	keys->crouch = 0;
 }
 
 /**
@@ -64,6 +65,7 @@ void init_player(player *status, map maze)
 {
 	status->pos_x = maze.start_x;
 	status->pos_y = maze.start_y;
+	status->pos_z = 0;
 	status->dir_x = -1;
 	status->dir_y = 0;
 	status->camera_plane_x = 0;
