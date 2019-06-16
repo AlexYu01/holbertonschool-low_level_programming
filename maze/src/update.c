@@ -55,12 +55,15 @@ void update_player(map maze, keys_state *keys, player *status)
  */
 void move_forwd(map maze, player *status)
 {
-	if (maze.layout[(int)(status->pos_x + status->dir_x * status->move_speed)]
-	[(int)status->pos_y] == '0')
-		status->pos_x += status->dir_x * status->move_speed;
-	if (maze.layout[(int)status->pos_x]
-	[(int)(status->pos_y + status->dir_y * status->move_speed)] == '0')
-		status->pos_y += status->dir_y * status->move_speed;
+	double dist_x;
+	double dist_y;
+
+	dist_x = status->dir_x * status->move_speed;
+	dist_y = status->dir_y * status->move_speed;
+	if (maze.layout[(int)(status->pos_x + dist_x)][(int)status->pos_y] == '0')
+		status->pos_x += dist_x;
+	if (maze.layout[(int)status->pos_x][(int)(status->pos_y + dist_y)] == '0')
+		status->pos_y += dist_y;
 }
 
 /**
@@ -71,12 +74,15 @@ void move_forwd(map maze, player *status)
  */
 void move_backwd(map maze, player *status)
 {
-	if (maze.layout[(int)(status->pos_x - status->dir_x * status->move_speed)]
-	[(int)status->pos_y] == '0')
-		status->pos_x -= status->dir_x * status->move_speed;
-	if (maze.layout[(int)status->pos_x]
-	[(int)(status->pos_y - status->dir_y * status->move_speed)] == '0')
-		status->pos_y -= status->dir_y * status->move_speed;
+	double dist_x;
+	double dist_y;
+
+	dist_x = status->dir_x * status->move_speed;
+	dist_y = status->dir_y * status->move_speed;
+	if (maze.layout[(int)(status->pos_x - dist_x)][(int)status->pos_y] == '0')
+		status->pos_x -= dist_x;
+	if (maze.layout[(int)status->pos_x][(int)(status->pos_y - dist_y)] == '0')
+		status->pos_y -= dist_y;
 }
 
 /**
@@ -88,17 +94,20 @@ void rotate_right(player *status)
 {
 	double old_dir_x;
 	double old_plane_x;
+	double sine_val;
+	double cosine_val;
 
+	sine_val = sin(-status->rot_speed);
+	cosine_val = cos(-status->rot_speed);
 	old_dir_x = status->dir_x;
-	status->dir_x = status->dir_x * cos(-status->rot_speed) - status->dir_y *
-			sin(-status->rot_speed);
-	status->dir_y = old_dir_x * sin(-status->rot_speed) + status->dir_y *
-			cos(-status->rot_speed);
+
+	status->dir_x = status->dir_x * cosine_val - status->dir_y * sine_val;
+	status->dir_y = old_dir_x * sine_val + status->dir_y * cosine_val;
 	old_plane_x = status->camera_plane_x;
-	status->camera_plane_x = status->camera_plane_x * cos(-status->rot_speed) -
-			status->camera_plane_y * sin(-status->rot_speed);
-	status->camera_plane_y = old_plane_x * sin(-status->rot_speed) +
-			status->camera_plane_y * cos(-status->rot_speed);
+	status->camera_plane_x = status->camera_plane_x * cosine_val -
+			status->camera_plane_y * sine_val;
+	status->camera_plane_y = old_plane_x * sine_val + status->camera_plane_y *
+			cosine_val;
 }
 
 /**
@@ -110,15 +119,18 @@ void rotate_left(player *status)
 {
 	double old_dir_x;
 	double old_plane_x;
+	double sine_val;
+	double cosine_val;
 
+	sine_val = sin(status->rot_speed);
+	cosine_val = cos(status->rot_speed);
 	old_dir_x = status->dir_x;
-	status->dir_x = status->dir_x * cos(status->rot_speed) - status->dir_y *
-			sin(status->rot_speed);
-	status->dir_y = old_dir_x * sin(status->rot_speed) + status->dir_y *
-			cos(status->rot_speed);
+
+	status->dir_x = status->dir_x * cosine_val - status->dir_y * sine_val;
+	status->dir_y = old_dir_x * sine_val + status->dir_y * cosine_val;
 	old_plane_x = status->camera_plane_x;
-	status->camera_plane_x = status->camera_plane_x * cos(status->rot_speed) -
-			status->camera_plane_y * sin(status->rot_speed);
-	status->camera_plane_y = old_plane_x * sin(status->rot_speed) +
-			status->camera_plane_y * cos(status->rot_speed);
+	status->camera_plane_x = status->camera_plane_x * cosine_val -
+			status->camera_plane_y * sine_val;
+	status->camera_plane_y = old_plane_x * sine_val + status->camera_plane_y *
+			cosine_val;
 }
