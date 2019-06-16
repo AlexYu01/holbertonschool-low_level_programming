@@ -53,6 +53,9 @@ typedef struct keys_state
  * @camera_plane_x: The plane of the player's camera on the x-axis.
  * @camera_plane_y: The plane of the player's camera on the y-axis.
  * @time: Current time.
+ * @move_speed: Speed to move at relative to time since the last frame.
+ * @rot_speed: Speed to rotate the camera relative to the time since the last
+ * frame.
  */
 typedef struct player
 {
@@ -63,6 +66,8 @@ typedef struct player
 	double camera_plane_x;
 	double camera_plane_y;
 	double time;
+	double move_speed;
+	double rot_speed;
 
 } player;
 
