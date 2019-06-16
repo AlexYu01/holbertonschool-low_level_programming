@@ -104,7 +104,7 @@ void move_left(map maze, player *status)
 	dist_y = status->dir_x * status->move_speed;
 	if (maze.layout[(int)(status->pos_x - dist_x)][(int)status->pos_y] == '0')
 		status->pos_x -= dist_x;
-	if (maze.layout[(int)status->pos_x][(int)(status->pos_x + dist_y)] == '0')
+	if (maze.layout[(int)status->pos_x][(int)(status->pos_y + dist_y)] == '0')
 		status->pos_y += dist_y;
 }
 
