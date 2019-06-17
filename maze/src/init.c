@@ -54,6 +54,7 @@ void init_keys(keys_state *keys)
 	keys->m_right = 0;
 	keys->crouch = 0;
 	keys->sprint = 0;
+	keys->mini_map = 0;
 }
 
 /**

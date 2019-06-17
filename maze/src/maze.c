@@ -30,7 +30,8 @@ int main(void)
 		SDL_RenderClear(instance.renderer);
 
 		render_maze(instance, maze, status);
-		render_mini(instance, maze, status);
+		if (keys.mini_map == 1)
+			render_mini(instance, maze, status);
 		SDL_RenderPresent(instance.renderer);
 
 		update_player(maze, &keys, &status);

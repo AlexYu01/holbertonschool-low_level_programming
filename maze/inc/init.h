@@ -33,6 +33,7 @@ typedef struct SDL_Instance
  * @sprint: Status of sprint mode.
  * @m_left: Status of mouse left movement.
  * @m_right: Status of mouse right movement.
+ * @mini_map: Status of minimap.
  */
 typedef struct keys_state
 {
@@ -44,6 +45,7 @@ typedef struct keys_state
 	char sprint;
 	char m_left;
 	char m_right;
+	char mini_map;
 } keys_state;
 
 /**

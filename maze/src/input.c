@@ -88,6 +88,9 @@ char handle_keydown(SDL_Event event, keys_state *keys)
 		case SDLK_LSHIFT:
 			keys->sprint = 1;
 			break;
+		case SDLK_TAB:
+			keys->mini_map = !keys->mini_map;
+			break;
 		case SDLK_ESCAPE:
 			return (1);
 		default:
