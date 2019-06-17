@@ -156,35 +156,35 @@ char get_default(map *maze)
 	if (map_malloc(maze) != 0)
 		return (FAILURE);
 
-	memcpy(maze->layout[0], (char[MAZE_WIDTH])
-	{'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
+	memcpy(maze->layout[0], ((char[MAZE_WIDTH])
+	{'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'}),
 	sizeof(char) * MAZE_WIDTH);
-	memcpy(maze->layout[1], (char[MAZE_WIDTH])
-	{'1', '1', '0', '0', '0', '0', '0', '0', '0', '1'},
+	memcpy(maze->layout[1], ((char[MAZE_WIDTH])
+	{'1', '1', '0', '0', '0', '0', '0', '0', '0', '1'}),
 	sizeof(char) * MAZE_WIDTH);
-	memcpy(maze->layout[2], (char[MAZE_WIDTH])
-	{'1', '0', '1', '0', '0', '0', '0', '0', '0', '1'},
+	memcpy(maze->layout[2], ((char[MAZE_WIDTH])
+	{'1', '0', '1', '0', '0', '0', '0', '0', '0', '1'}),
 	sizeof(char) * MAZE_WIDTH);
-	memcpy(maze->layout[3], (char[MAZE_WIDTH])
-	{'1', '0', '0', '1', '0', '0', '0', '0', '0', '1'},
+	memcpy(maze->layout[3], ((char[MAZE_WIDTH])
+	{'1', '0', '0', '1', '0', '0', '0', '0', '0', '1'}),
 	sizeof(char) * MAZE_WIDTH);
-	memcpy(maze->layout[4], (char[MAZE_WIDTH])
-	{'1', '0', '0', '0', '1', '0', '0', '0', '0', '1'},
+	memcpy(maze->layout[4], ((char[MAZE_WIDTH])
+	{'1', '0', '0', '0', '1', '0', '0', '0', '0', '1'}),
 	sizeof(char) * MAZE_WIDTH);
-	memcpy(maze->layout[5], (char[MAZE_WIDTH])
-	{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'},
+	memcpy(maze->layout[5], ((char[MAZE_WIDTH])
+	{'1', '0', '0', '0', '0', '0', '0', '0', '0', '1'}),
 	sizeof(char) * MAZE_WIDTH);
-	memcpy(maze->layout[6], (char[MAZE_WIDTH])
-	{'1', '0', '0', '0', '0', '0', '1', '0', '0', '1'},
+	memcpy(maze->layout[6], ((char[MAZE_WIDTH])
+	{'1', '0', '0', '0', '0', '0', '1', '0', '0', '1'}),
 	sizeof(char) * MAZE_WIDTH);
-	memcpy(maze->layout[7], (char[MAZE_WIDTH])
-	{'1', '0', '0', '0', '0', '0', '0', '1', '0', '1'},
+	memcpy(maze->layout[7], ((char[MAZE_WIDTH])
+	{'1', '0', '0', '0', '0', '0', '0', '1', '0', '1'}),
 	sizeof(char) * MAZE_WIDTH);
-	memcpy(maze->layout[8], (char[MAZE_WIDTH])
-	{'1', '0', '0', '0', '0', '0', '0', '0', '1', '1'},
+	memcpy(maze->layout[8], ((char[MAZE_WIDTH])
+	{'1', '0', '0', '0', '0', '0', '0', '0', '1', '1'}),
 	sizeof(char) * MAZE_WIDTH);
-	memcpy(maze->layout[9], (char[MAZE_WIDTH])
-	{'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'},
+	memcpy(maze->layout[9], ((char[MAZE_WIDTH])
+	{'1', '1', '1', '1', '1', '1', '1', '1', '1', '1'}),
 	sizeof(char) * MAZE_WIDTH);
 
 	return (SUCCESS);
