@@ -30,6 +30,7 @@ int main(void)
 		SDL_RenderClear(instance.renderer);
 
 		render_maze(instance, maze, status);
+		render_mini(instance, maze, status);
 		SDL_RenderPresent(instance.renderer);
 
 		update_player(maze, &keys, &status);
