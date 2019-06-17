@@ -4,6 +4,9 @@ LEFT CTRL - Toggles between mouse mode and keyboard only mode.
 All modes:
 W - Move forward
 S - Move backward
+SHIFT - Hold to sprint.
+Z - To crouch/stand.
+TAB - Open Minimap.
 
 Mouse mode:
 Rotate camera using the mouse.
@@ -13,5 +16,3 @@ D - Move laterally right.
 Keyboard only mode:
 A - Rotate camera left.
 D - Rotate camera right.
-
-
